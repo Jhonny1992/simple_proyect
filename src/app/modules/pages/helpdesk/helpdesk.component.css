@@ -1,0 +1,52 @@
+.css-grid-table,
+.css-grid-table-header,
+.css-grid-table-body {
+    display: grid;
+}
+
+.css-grid-table {
+    grid-template-rows: 24px 72px;
+    width: 80%;
+}
+
+.css-grid-table-header,
+.css-grid-table-body {
+    grid-template-columns: 170px 130px 90px;
+    width: 100%;
+    line-height: 20px; 
+}
+
+.css-grid-table-header {
+    grid-column-gap: 2px;
+    grid-template-rows: auto;
+}
+
+
+.css-grid-table-body {
+    grid-template-rows: auto auto auto;
+    line-height: 28px;
+}
+
+.css-grid-table-header div {
+    font-weight: bold;
+}
+
+.css-grid-table-body div {
+    padding-left: 6px;
+}
+.css-grid-table-body div {
+    padding-left: 6px;
+}
+
+.css-left {
+    text-align: left;
+}
+
+.css-right {
+    text-align: right;
+}
+
+.css-total {
+    color: blue;
+    font-weight: bold;
+}
