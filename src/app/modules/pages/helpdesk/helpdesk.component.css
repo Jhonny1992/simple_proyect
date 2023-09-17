@@ -25,15 +25,13 @@
 .css-grid-table-body {
     grid-template-rows: auto auto auto;
     line-height: 28px;
+    font-size: 14px;
 }
 
 .css-grid-table-header div {
     font-weight: bold;
 }
 
-.css-grid-table-body div {
-    padding-left: 6px;
-}
 .css-grid-table-body div {
     padding-left: 6px;
 }
@@ -49,4 +47,8 @@
 .css-total {
     color: blue;
     font-weight: bold;
+}
+
+.form-check-label{
+    font-size: 14px;
 }
