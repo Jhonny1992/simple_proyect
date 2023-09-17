@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HelpdeskService} from "../../services/helpdesk/helpdesk.service";
 import {TipoAtencion} from "../../../model/helpdesk/TipoAtencion";
+import {Requerimientos} from "../../../model/helpdesk/Requerimientos";
 
 @Component({
   selector: 'app-helpdesk',
@@ -10,11 +11,24 @@ import {TipoAtencion} from "../../../model/helpdesk/TipoAtencion";
 export class HelpdeskComponent implements OnInit {
 
   tipoAtencion: TipoAtencion[] = [];
+  requerimientos: Requerimientos[] = [];
 
-  constructor(private helpdeskService: HelpdeskService) { }
+  constructor(private helpdeskService: HelpdeskService) {
+    this.listTipoAtencion();
+    this.listRequerimientos();
+    this.listTipoAtencion2()
+  }
 
   ngOnInit(): void {
-    this.listTipoAtencion();
+
+  }
+
+  listTipoAtencion2(): void{
+    this.helpdeskService.listTipoAtencion2().subscribe({
+      next:(resp) => {
+        console.log(resp)
+      }
+    })
   }
 
   listTipoAtencion(): void{
@@ -22,6 +36,14 @@ export class HelpdeskComponent implements OnInit {
       next:(resp) => {
         this.tipoAtencion = resp;
         console.log(this.tipoAtencion)
+      }
+    })
+  }
+  listRequerimientos(): void{
+    this.helpdeskService.listRequerimientos().subscribe({
+      next:(resp) => {
+        this.requerimientos = resp;
+        console.log(this.requerimientos)
       }
     })
   }

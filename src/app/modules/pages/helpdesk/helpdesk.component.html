@@ -33,40 +33,10 @@
       </div>
 
       <h5 class="mt-3">3. Características Requeridas</h5>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="checkbox1" value="Característica 1">
-        <label class="form-check-label" for="checkbox1">
-          Requiere Central Telefónica
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="checkbox2" value="Característica 2">
-        <label class="form-check-label" for="checkbox2">
-          Requiere Software de Acceso Remoto
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="checkbox3" value="Característica 2">
-        <label class="form-check-label" for="checkbox2">
-          Generación de Informes Personalizados
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="checkbox4" value="Característica 2">
-        <label class="form-check-label" for="checkbox2">
-          Monitoreo proactivo de Servicios / Servidores
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="checkbox5" value="Característica 2">
-        <label class="form-check-label" for="checkbox2">
-          Soporte On-site
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="checkbox6" value="Característica 2">
-        <label class="form-check-label" for="checkbox2">
-          Requiere herramienta de Gestión de tickets
+      <div *ngFor="let requerimiento of requerimientos" class="form-check">
+        <input class="form-check-input" type="checkbox" id="{{requerimiento.codigo}}" value="requerimiento.codigo">
+        <label class="form-check-label" [for]="requerimiento.codigo">
+          {{requerimiento.descripcion}}
         </label>
       </div>
     </div>
