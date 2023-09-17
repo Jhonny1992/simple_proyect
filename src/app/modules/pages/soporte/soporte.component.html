@@ -1,0 +1,175 @@
+<div class="container">
+  <div class="text-center">
+    <h1 class="mt-3">Cotizador de Servicios de Soporte de TI</h1>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <h5>1. Tipo de Servicio</h5>
+      <!-- <div *ngFor="let atencion of tipoAtencion" class="form-check">
+        <input class="form-check-input" type="radio" name="tipoAtencion" id="{{atencion.codigo}}" value="atencion.codigo">
+        <label class="form-check-label" [for]="atencion.codigo">
+          {{atencion.nombre}}
+        </label>
+      </div> -->
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="tipoServicio" id="rdTipo1" value="Tipo1">
+        <label class="form-check-label" for="radio1">
+          Soporte Tecnico Standar
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="tipoServicio" id="rdTipo2" value="Tipo2">
+        <label class="form-check-label" for="radio1">
+          Soporte Remoto
+        </label>
+      </div>
+
+      <h5 class="mt-3">2. Horario del Servicio</h5>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="horarioServicio" id="rdhorario1" value="Horario1">
+        <label class="form-check-label" for="radio1">
+          Dentro del horario de oficina
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="horarioServicio" id="rdhorario2" value="Horario2">
+        <label class="form-check-label" for="radio1">
+          Fuera del horario de oficina
+        </label>
+      </div>
+
+      <h5 class="mt-3">3. Actividades especificas</h5>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="chkActividad1" value="Actividad1">
+        <label class="form-check-label" for="checkbox1">
+          Instalacion y COnfiguracion de Software
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="chkActividad2" value="Actividad2">
+        <label class="form-check-label" for="checkbox1">
+          Reinstalacion de Sistema Operativo
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="chkActividad3" value="Actividad3">
+        <label class="form-check-label" for="checkbox1">
+          Respaldo de Informacion
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="chkActividad4" value="Actividad4">
+        <label class="form-check-label" for="checkbox1">
+          Limpieza de Hardware
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="chkActividad5" value="Actividad5">
+        <label class="form-check-label" for="checkbox1">
+          Instalacion de Antivirus y Antimalware
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="chkActividad6" value="Actividad6">
+        <label class="form-check-label" for="checkbox1">
+          Configuracion de Impresoras
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="chkActividad7" value="Actividad7">
+        <label class="form-check-label" for="checkbox1">
+          Inventariado de Equipos
+        </label>
+      </div>
+    </div>
+    <div class="col-md-4">
+
+      <h5 class="mt-3">5. Cantidad de Usuarios</h5>
+      <div class="col-md-10">
+        <input placeholder="Ejm:100" class="form-control" type="number" id="cantidadUsuarios" name="cantidadUsuarios" min="0">
+      </div>
+
+      <h5 class="mt-3">5. Tipos de Equipos</h5>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="chkTipoEquipo1" value="tipoEquipo 1">
+        <label class="form-check-label" for="checkbox1">
+          PC
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="chkTipoEquipo2" value="tipoEquipo 2">
+        <label class="form-check-label" for="checkbox2">
+          Laptops
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="chkTipoEquipo3" value="tipoEquipo 3">
+        <label class="form-check-label" for="checkbox2">
+          Servidores
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="chkTipoEquipo4" value="tipoEquipo 4">
+        <label class="form-check-label" for="checkbox2">
+          MAC
+        </label>
+      </div>
+      
+      <div class="row mt-3">
+        <div class="col-md-3">
+          <button type="button" class="btn btn-primary">COTIZAR</button>
+        </div>
+        <div class="col-md-3">
+          <button type="button" class="btn btn-secondary">LIMPIAR</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="row mt-3">
+      <div class="css-grid-table" style="text-align: center;">
+        <div class="css-grid-table-header" style="border-bottom: 1px solid;">
+          <div class="css-left">Detalle</div>
+          <div class="css-right">Cantidad</div>
+          <div class="css-right">Total $</div>
+        </div>
+        <div class="css-grid-table-body">
+          <div class="css-left">Cantidad de Equipos</div>
+          <div class="css-right">5</div>
+          <div class="css-right">500</div>
+
+          <div class="css-left">Costo por Actividades Especificas</div>
+          <div class="css-right"> </div>
+          <div class="css-right">1</div>
+
+          <div class="css-left">Costo por Servicio</div>
+          <div class="css-right"> </div>
+          <div class="css-right">2</div>
+
+          <div class="css-left">Costo por Horario</div>
+          <div class="css-right"> </div>
+          <div class="css-right">2</div>
+
+          <div class="css-left">Costo por Tipo de Equipos</div>
+          <div class="css-right"> </div>
+          <div class="css-right">15</div>
+
+          <div class="css-left"> </div>
+          <div class="css-right">Total $</div>
+          <div class="css-right css-total">10780</div>
+
+          <div class="col-md-3">
+
+          </div>
+          <div class="col-md-3">
+
+          </div>
+          <div class="col-md-3">
+            <button type="button" class="btn btn-success">GRABAR</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

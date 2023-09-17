@@ -1,0 +1,114 @@
+<div class="container">
+  <div class="text-center">
+    <h1 class="mt-3">Cotizador de Servicios de Outsourcing</h1>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-5">
+      <h5>1. Tipo de Servicio</h5>
+      <div *ngFor="let atencion of tipoAtencion" class="form-check">
+        <input class="form-check-input" type="radio" name="tipoAtencion" id="{{atencion.codigo}}" value="atencion.codigo">
+        <label class="form-check-label" [for]="atencion.codigo">
+          {{atencion.nombre}}
+        </label>
+      </div>
+
+      <h5 class="mt-3">2. Horas por Servicio</h5>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="duracionServicio" id="radio3" value="Opción A">
+        <label class="form-check-label" for="radio3">
+          1 año
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="duracionServicio" id="radio4" value="Opción B">
+        <label class="form-check-label" for="radio4">
+          2 años
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="duracionServicio" id="radio5" value="Opción B">
+        <label class="form-check-label" for="radio4">
+          3 años a más
+        </label>
+      </div>
+
+      <h5 class="mt-3">3. Cantidad de Personal</h5>
+      <div *ngFor="let requerimiento of requerimientos" class="form-check">
+        <input class="form-check-input" type="checkbox" id="{{requerimiento.codigo}}" value="requerimiento.codigo">
+        <label class="form-check-label" [for]="requerimiento.codigo">
+          {{requerimiento.descripcion}}
+        </label>
+      </div>
+
+      <h5 class="mt-3">4. Tipo de Servicio</h5>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="tipoServicio" id="rdTipo1" value="Tipo1">
+        <label class="form-check-label" for="radio1">
+          Personal Híbrido
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="tipoServicio" id="checkbox19" value="Tipo 2">
+        <label class="form-check-label" for="checkbox8">
+          Personal Remoto
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="tipoServicio" id="checkbox20" value="Tipo 2">
+        <label class="form-check-label" for="checkbox8">
+          Personal Presencial
+        </label>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-3">
+          <button type="button" class="btn btn-primary">COTIZAR</button>
+        </div>
+        <div class="col-md-3">
+          <button type="button" class="btn btn-secondary">LIMPIAR</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <div class="row mt-3">
+      <div class="css-grid-table" style="text-align: center;">
+        <div class="css-grid-table-header" style="border-bottom: 1px solid;">
+          <div class="css-left">Detalle</div>
+          <div class="css-right">Cantidad</div>
+          <div class="css-right">Total $</div>
+        </div>
+        <div class="css-grid-table-body">
+          <div class="css-left">Servicio + SubServcio</div>
+          <div class="css-right">5</div>
+          <div class="css-right">500</div>
+
+          <div class="css-left">Horas por Servicio</div>
+          <div class="css-right"> </div>
+          <div class="css-right">1</div>
+
+          <div class="css-left">Cantidad de Personal</div>
+          <div class="css-right"> </div>
+          <div class="css-right">2</div>
+
+          <div class="css-left">Modalidad Hibrida</div>
+          <div class="css-right"> </div>
+          <div class="css-right">2</div>
+
+          <div class="css-left"> </div>
+          <div class="css-right">Total $</div>
+          <div class="css-right css-total">10780</div>
+
+          <div class="col-md-3">
+
+          </div>
+          <div class="col-md-3">
+
+          </div>
+          <div class="col-md-3">
+            <button type="button" class="btn btn-success">GRABAR</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

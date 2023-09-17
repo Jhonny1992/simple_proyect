@@ -9,6 +9,8 @@ import {AppRoutingModule} from "./app-routing.module";
 import { MainComponent } from './modules/pages/main/main.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { SoporteComponent } from './modules/pages/soporte/soporte.component';
+import { OutsourcingComponent } from './modules/pages/outsourcing/outsourcing.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import {HttpClientModule} from "@angular/common/http";
     HelpdeskComponent,
     LoginComponent,
     MainComponent,
+    SoporteComponent,
+    OutsourcingComponent
 
   ],
   imports: [
