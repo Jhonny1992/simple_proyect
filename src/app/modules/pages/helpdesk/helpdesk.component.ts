@@ -14,25 +14,15 @@ export class HelpdeskComponent implements OnInit {
   constructor(private helpdeskService: HelpdeskService) { }
 
   ngOnInit(): void {
-    this.prueba();
-    //this.listTipoAtencion();
+    this.listTipoAtencion();
   }
 
-  /*listTipoAtencion(): void{
+  listTipoAtencion(): void{
     this.helpdeskService.listTipoAtencion().subscribe({
       next:(resp) => {
         this.tipoAtencion = resp;
         console.log(this.tipoAtencion)
       }
     })
-  }*/
-
-  prueba(): void{
-    this.helpdeskService.obtenerData().subscribe({
-      next:(resp) => {
-        console.log(resp)
-      }
-    })
   }
-
 }
