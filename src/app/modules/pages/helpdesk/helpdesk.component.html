@@ -15,19 +15,19 @@
 
       <h5 class="mt-3">2. Duración del Servicio</h5>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="duracionServicio" id="radio3" value="Opción A">
+        <input class="form-check-input" type="radio" name="duracionServicio" id="radio3" value="12" (change)="onRadioChangeAno($event)">
         <label class="form-check-label" for="radio3">
           1 año
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="duracionServicio" id="radio4" value="Opción B">
+        <input class="form-check-input" type="radio" name="duracionServicio" id="radio4" value="24" (change)="onRadioChangeAno($event)">
         <label class="form-check-label" for="radio4">
           2 años
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="duracionServicio" id="radio5" value="Opción B">
+        <input class="form-check-input" type="radio" name="duracionServicio" id="radio5" value="36" (change)="onRadioChangeAno($event)">
         <label class="form-check-label" for="radio4">
           3 años a más
         </label>
@@ -35,8 +35,9 @@
 
       <h5 class="mt-3">3. Características Requeridas</h5>
       <div *ngFor="let requerimiento of requerimientos" class="form-check">
-        <input class="form-check-input" type="checkbox" [id]="'checkbox-'+ requerimiento.codigo" value="requerimiento.codigo">
-        <label class="form-check-label" [for]="'checkbox-'+requerimiento.codigo">
+        <input class="form-check-input" type="checkbox" [id]="'checkbox-'+ requerimiento.codigo" [value]="requerimiento.codigo" [(ngModel)]="requerimiento.selected"
+                (click)="onCheckboxRequerimiento(requerimiento)">
+        <label class="form-check-label" [for]="'checkbox-'+ requerimiento.codigo">
           {{requerimiento.descripcion}}
         </label>
       </div>
@@ -44,8 +45,9 @@
     <div class="col-md-4">
       <h5 >4. Canales de Atención</h5>
       <div *ngFor="let canal of canales" class="form-check">
-        <input class="form-check-input" type="checkbox" id="{{canal.codigo}}" value="canal.codigo">
-        <label class="form-check-label" [for]="canal.codigo">
+        <input class="form-check-input" type="checkbox" [id]="'checkbox1-'+ canal.codigo" value="canal.codigo" [(ngModel)]="canal.selected"
+               (click)="onCheckboxCanal(canal)">
+        <label class="form-check-label" [for]="'checkbox1-' + canal.codigo">
           {{canal.descripcion}}
         </label>
       </div>
@@ -53,57 +55,12 @@
       <h5 class="mt-3">5. Horario de Atención</h5>
       <h6>Días:</h6>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4" *ngFor="let dia of dias">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="checkbox7" value="Lu">
-            <label class="form-check-label" for="checkbox7">
-              Lu
+            <input class="form-check-input" type="checkbox" [id]="'checkbox2-' + dia.codigo" value="dia.codigo" [(ngModel)]="dia.selected">
+            <label class="form-check-label" [for]="'checkbox2-' + dia.codigo">
+              {{dia.abreviatura}}
             </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="checkbox8" value="Ma">
-            <label class="form-check-label" for="checkbox8">
-              Ma
-            </label>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="checkbox9" value="Mi">
-            <label class="form-check-label" for="checkbox7">
-              Mi
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="checkbox10" value="Ju">
-            <label class="form-check-label" for="checkbox8">
-              Ju
-            </label>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="checkbox11" value="Vi">
-            <label class="form-check-label" for="checkbox9">
-              Vi
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="checkbox30" value="Sa">
-            <label class="form-check-label" for="checkbox10">
-              Sa
-            </label>
-          </div>
-        </div>
-        <div class="row ">
-          <div class="col-md-4">
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" id="checkbox13" value="Do">
-              <label class="form-check-label" for="checkbox11">
-                Do
-              </label>
-            </div>
-            <!-- Agrega más días aquí si es necesario -->
           </div>
         </div>
         <div class="row mt-3">
@@ -112,7 +69,7 @@
               Inicio de Jornada:
             </label>
             <div class="col-md-5">
-              <input class="form-control" type="time" id="inijornada" name="inijornada">
+              <input class="form-control" type="time" id="inijornada" name="inijornada" [(ngModel)]="horaInicioJornada">
             </div>
 
         </div>
@@ -123,7 +80,7 @@
             Fin de Jornada:
           </label>
           <div class="col-md-5">
-            <input class="form-control" type="time" id="finjornada" name="finjornada">
+            <input class="form-control" type="time" id="finjornada" name="finjornada" [(ngModel)]="horaFinJornada">
           </div>
 
         </div>
@@ -132,28 +89,17 @@
       <h5 class="mt-3">6. Cantidad de Usuarios</h5>
       <div class="col-md-10">
         <input placeholder="Ejm:100" class="form-control" type="number" id="cantidadUsuarios" name="cantidadUsuarios" min="0"
-               [(ngModel)]="numero">
+               [(ngModel)]="numUsuarios">
       </div>
     </div>
 
     <div class="col-md-4">
       <h5>7. Tipo de Servicio</h5>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="tipoServicio" id="rdTipo1" value="Tipo1">
-        <label class="form-check-label" for="rdTipo1">
-          Personal Híbrido
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="tipoServicio" id="checkbox19" value="Tipo 2">
-        <label class="form-check-label" for="checkbox8">
-          Personal Remoto
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="radio" name="tipoServicio" id="checkbox20" value="Tipo 2">
-        <label class="form-check-label" for="checkbox8">
-          Personal Presencial
+      <div *ngFor="let servicio of servicios" class="form-check">
+        <input class="form-check-input" type="radio" name="servicios" [id]="'radio2-' + servicio.codigo" [value]="servicio.codigo"
+               (change)="onRadioChangeServicio(servicio)">
+        <label class="form-check-label" [for]="'radio2-' + servicio.codigo">
+          {{servicio.descripcion}}
         </label>
       </div>
 
@@ -174,37 +120,37 @@
           <div class="css-right">Total $</div>
         </div>
         <div class="css-grid-table-body">
-          <div class="css-left">Cantidad de Analistas</div>
+          <div class="css-left">Cantidad de Analistas(Incluye CR)</div>
           <div class="css-right">{{cantidadAnalista}}</div>
-          <div class="css-right">500</div>
+          <div class="css-right">{{precioXAnalista}}</div>
 
           <div class="css-left">Tipo de Soporte</div>
           <div class="css-right"> </div>
-          <div class="css-right">1</div>
+          <div class="css-right">{{AtencionSeleccionado}}</div>
 
           <div class="css-left">Caracteristicas Requeridas</div>
-          <div class="css-right"> </div>
-          <div class="css-right">2</div>
+          <div class="css-right"> {{cantidadSelecReq}}</div>
+          <div class="css-right">{{totalRequerimientos}}</div>
 
           <div class="css-left">Canales de Atencion</div>
-          <div class="css-right"> </div>
-          <div class="css-right">2</div>
+          <div class="css-right">{{cantidadSelectCanales}} </div>
+          <div class="css-right">{{totalCanales}}</div>
 
-          <div class="css-left">Horario de Atencion</div>
-          <div class="css-right"> </div>
-          <div class="css-right">15</div>
+          <div class="css-left">Horario de Atencion(Incluye CA)</div>
+          <div class="css-right">{{horaAproximada}} </div>
+          <div class="css-right">{{precioJornada}}</div>
 
-          <div class="css-left">Tipo de Servicio</div>
+          <div class="css-left">Tipo de Servicio(Incluye CA)</div>
           <div class="css-right"> </div>
-          <div class="css-right">14</div>
+          <div class="css-right">{{precioServicio}}</div>
 
           <div class="css-left"> </div>
           <div class="css-right">Total $</div>
-          <div class="css-right css-total">10780</div>
+          <div class="css-right css-total">{{pagoTotal}}</div>
 
           <div class="css-left"> </div>
-          <div class="css-right">Costo por año $</div>
-          <div class="css-right css-total">10780</div>
+          <div class="css-right">Costo por {{verAnio}} año $ </div>
+          <div class="css-right css-total">{{pagoAnios}}</div>
 
           <div class="col-md-3">
 

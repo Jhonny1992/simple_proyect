@@ -5,6 +5,7 @@ import {TipoAtencion} from "../../../model/helpdesk/TipoAtencion";
 import {environment} from "../../../../environments/environment";
 import {Requerimientos} from "../../../model/helpdesk/Requerimientos";
 import {Canales} from "../../../model/helpdesk/Canales";
+import {Dias} from "../../../model/helpdesk/Dias";
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,11 @@ export class HelpdeskService {
     return this.http.get<Canales[]>(`${this.url}/canales`)
   }
 
-  listModalidades(): Observable<Canales[]> {
+  listTipoServicio(): Observable<Canales[]> {
     return this.http.get<Canales[]>(`${this.url}/modalidades`)
+  }
+
+  listDias(): Observable<Dias[]> {
+    return this.http.get<Dias[]>(`${this.url}/dias`)
   }
 }
