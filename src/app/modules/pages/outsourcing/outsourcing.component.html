@@ -5,12 +5,45 @@
   <div class="row mt-4">
     <div class="col-md-5">
       <h5>1. Tipo de Servicio</h5>
-      <div *ngFor="let atencion of tipoAtencion" class="form-check">
-        <input class="form-check-input" type="radio" name="tipoAtencion" id="{{atencion.codigo}}" value="atencion.codigo">
-        <label class="form-check-label" [for]="atencion.codigo">
-          {{atencion.nombre}}
-        </label>
-      </div>
+      <select class="form-select form-select-sm" style="width: 70%;" id="servicio" name="servicio">
+        <option>Seleccione Servicio</option>
+        <option value="OUTSER-001">Desarrollo de Software</option>
+        <option value="OUTSER-002">Consultoría y Asesoramiento</option>
+        <option value="OUTSER-003">Gestión de Proyectos</option>
+        <option value="OUTSER-004">Gestión de Bases de Datos</option>
+        <option value="OUTSER-005">Integración de Datos</option>
+        <option value="OUTSER-006">Big Data y Ciencia de Datos</option>
+        <option value="OUTSER-007">Automatización de Procesos de Negocios</option>
+        <option value="OUTSER-008">Evaluación y Mejora de la Seguridad Cibernética</option>
+      </select>
+      <select class="form-select form-select-sm" style="width: 70%;" id="subServicio" name="subServicio">
+        <option>Seleccione SubServicio</option>
+        <option value="OUTSUBSER-001" data-costo="17">Desarrollo de aplicaciones web</option>
+        <option value="OUTSUBSER-002" data-costo="17">Desarrollo de aplicaciones móviles</option>
+        <option value="OUTSUBSER-003" data-costo="17">Desarrollo de software personalizado</option>
+        <option value="OUTSUBSER-004" data-costo="17">Desarrollo de software de gestión empresarial</option>
+        <option value="OUTSUBSER-005" data-costo="16">Consultoría en estrategia de TI</option>
+        <option value="OUTSUBSER-006" data-costo="16">Consultoría en ciberseguridad</option>
+        <option value="OUTSUBSER-007" data-costo="16">Consultoría en gestión de proyectos</option>
+        <option value="OUTSUBSER-008" data-costo="16">Gestión de proyectos de desarrollo de software</option>
+        <option value="OUTSUBSER-009" data-costo="16">Gestión de proyectos de TI</option>
+        <option value="OUTSUBSER-010" data-costo="16">Gestión de proyectos de infraestructura</option>
+        <option value="OUTSUBSER-011" data-costo="17">Administración y mantenimiento de bases de datos</option>
+        <option value="OUTSUBSER-012" data-costo="17">Optimización de bases de datos para el rendimiento</option>
+        <option value="OUTSUBSER-013" data-costo="17">Migración de datos entre sistemas</option>
+        <option value="OUTSUBSER-014" data-costo="19">Integración de sistemas y flujos de datos</option>
+        <option value="OUTSUBSER-015" data-costo="19">ETL (Extracción, Transformación y Carga) de datos</option>
+        <option value="OUTSUBSER-016" data-costo="19">Automatización de procesos de datos</option>
+        <option value="OUTSUBSER-017" data-costo="21">Proyectos de análisis de Big Data</option>
+        <option value="OUTSUBSER-018" data-costo="21">Modelado predictivo y análisis avanzado</option>
+        <option value="OUTSUBSER-019" data-costo="21">Implementación de soluciones de ciencia de datos</option>
+        <option value="OUTSUBSER-020" data-costo="19">Automatización de flujos de trabajo</option>
+        <option value="OUTSUBSER-021" data-costo="19">Implementación de RPA (Automatización de Procesos Robóticos)</option>
+        <option value="OUTSUBSER-022" data-costo="23">Identificación de vulnerabilidades en aplicaciones, bases de datos, sistemas operativos</option>
+        <option value="OUTSUBSER-023" data-costo="23">Evaluación de la seguridad de la red y la infraestructura de TI</option>
+        <option value="OUTSUBSER-024" data-costo="23">Desarrollo de un plan de respuesta a incidentes</option>
+        <option value="OUTSUBSER-025" data-costo="23">Auditorías Regulares de Seguridad</option>
+      </select>
 
       <h5 class="mt-3">2. Horas por Servicio</h5>
       <div class="form-check">
@@ -32,12 +65,9 @@
         </label>
       </div>
 
-      <h5 class="mt-3">3. Cantidad de Personal</h5>
-      <div *ngFor="let requerimiento of requerimientos" class="form-check">
-        <input class="form-check-input" type="checkbox" id="{{requerimiento.codigo}}" value="requerimiento.codigo">
-        <label class="form-check-label" [for]="requerimiento.codigo">
-          {{requerimiento.descripcion}}
-        </label>
+      <h5 class="mt-3">3. Cantidad de Usuarios</h5>
+      <div class="col-md-10">
+        <input placeholder="Ejm:100" class="form-control" type="number" id="cantidadUsuarios" name="cantidadUsuarios" min="0">
       </div>
 
       <h5 class="mt-3">4. Tipo de Servicio</h5>
@@ -77,7 +107,7 @@
           <div class="css-right">Total $</div>
         </div>
         <div class="css-grid-table-body">
-          <div class="css-left">Servicio + SubServcio</div>
+          <div class="css-left">Servicio + SubServicio</div>
           <div class="css-right">5</div>
           <div class="css-right">500</div>
 
@@ -89,7 +119,7 @@
           <div class="css-right"> </div>
           <div class="css-right">2</div>
 
-          <div class="css-left">Modalidad Hibrida</div>
+          <div class="css-left">Modalidad Híbrida</div>
           <div class="css-right"> </div>
           <div class="css-right">2</div>
 
@@ -101,7 +131,7 @@
 
           </div>
           <div class="col-md-3">
-
+            <a class="btn btn-link" href="/main" role="button">RETORNAR</a>
           </div>
           <div class="col-md-3">
             <button type="button" class="btn btn-success">GRABAR</button>
