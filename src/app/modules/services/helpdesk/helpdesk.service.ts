@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {TipoAtencion} from "../../../model/helpdesk/TipoAtencion";
 import {environment} from "../../../../environments/environment";
 import {Requerimientos} from "../../../model/helpdesk/Requerimientos";
+import {Canales} from "../../../model/helpdesk/Canales";
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,13 @@ export class HelpdeskService {
 
   listRequerimientos(): Observable<Requerimientos[]> {
     return this.http.get<Requerimientos[]>(`${this.url}/requerimientos`);
+  }
+
+  listCanales(): Observable<Canales[]> {
+    return this.http.get<Canales[]>(`${this.url}/canales`)
+  }
+
+  listModalidades(): Observable<Canales[]> {
+    return this.http.get<Canales[]>(`${this.url}/modalidades`)
   }
 }

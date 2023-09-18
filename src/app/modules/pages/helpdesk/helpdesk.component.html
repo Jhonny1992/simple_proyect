@@ -6,8 +6,9 @@
     <div class="col-md-4">
       <h5>1. Tipo de Atencion</h5>
       <div *ngFor="let atencion of tipoAtencion" class="form-check">
-        <input class="form-check-input" type="radio" name="tipoAtencion" id="{{atencion.codigo}}" value="atencion.codigo">
-        <label class="form-check-label" [for]="atencion.codigo">
+        <input class="form-check-input" type="radio" name="tipoAtencion" [id]="'radio-' + atencion.codigo" [value]="atencion.codigo"
+               (change)="onRadioChangeAtencion(atencion)">
+        <label class="form-check-label" [for]="'radio-' + atencion.codigo">
           {{atencion.nombre}}
         </label>
       </div>
@@ -34,36 +35,18 @@
 
       <h5 class="mt-3">3. Características Requeridas</h5>
       <div *ngFor="let requerimiento of requerimientos" class="form-check">
-        <input class="form-check-input" type="checkbox" id="{{requerimiento.codigo}}" value="requerimiento.codigo">
-        <label class="form-check-label" [for]="requerimiento.codigo">
+        <input class="form-check-input" type="checkbox" [id]="'checkbox-'+ requerimiento.codigo" value="requerimiento.codigo">
+        <label class="form-check-label" [for]="'checkbox-'+requerimiento.codigo">
           {{requerimiento.descripcion}}
         </label>
       </div>
     </div>
     <div class="col-md-4">
       <h5 >4. Canales de Atención</h5>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="checkbox24" value="Característica 1">
-        <label class="form-check-label" for="checkbox1">
-          Canal Telefónico
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="checkbox21" value="Característica 2">
-        <label class="form-check-label" for="checkbox2">
-          Chat en Vivo
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="checkbox22" value="Característica 2">
-        <label class="form-check-label" for="checkbox2">
-          Redes Sociales
-        </label>
-      </div>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="checkbox23" value="Característica 2">
-        <label class="form-check-label" for="checkbox2">
-          Correo Electrónico
+      <div *ngFor="let canal of canales" class="form-check">
+        <input class="form-check-input" type="checkbox" id="{{canal.codigo}}" value="canal.codigo">
+        <label class="form-check-label" [for]="canal.codigo">
+          {{canal.descripcion}}
         </label>
       </div>
 
@@ -73,13 +56,13 @@
         <div class="col-md-4">
           <div class="form-check">
             <input class="form-check-input" type="checkbox" id="checkbox7" value="Lu">
-            <label class="form-check-label" for="checkbox5">
+            <label class="form-check-label" for="checkbox7">
               Lu
             </label>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" id="checkbox8" value="Ma">
-            <label class="form-check-label" for="checkbox6">
+            <label class="form-check-label" for="checkbox8">
               Ma
             </label>
           </div>
@@ -148,7 +131,8 @@
 
       <h5 class="mt-3">6. Cantidad de Usuarios</h5>
       <div class="col-md-10">
-        <input placeholder="Ejm:100" class="form-control" type="number" id="cantidadUsuarios" name="cantidadUsuarios" min="0">
+        <input placeholder="Ejm:100" class="form-control" type="number" id="cantidadUsuarios" name="cantidadUsuarios" min="0"
+               [(ngModel)]="numero">
       </div>
     </div>
 
@@ -156,7 +140,7 @@
       <h5>7. Tipo de Servicio</h5>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="tipoServicio" id="rdTipo1" value="Tipo1">
-        <label class="form-check-label" for="radio1">
+        <label class="form-check-label" for="rdTipo1">
           Personal Híbrido
         </label>
       </div>
@@ -176,7 +160,7 @@
 
       <div class="row mt-3">
         <div class="col-md-3">
-          <button type="button" class="btn btn-primary">COTIZAR</button>
+          <button (click)="cotizaciones()" type="button" class="btn btn-primary">COTIZAR</button>
         </div>
         <div class="col-md-3">
           <button type="button" class="btn btn-secondary">LIMPIAR</button>
@@ -192,7 +176,7 @@
         </div>
         <div class="css-grid-table-body">
           <div class="css-left">Cantidad de Analistas</div>
-          <div class="css-right">5</div>
+          <div class="css-right">{{cantidadAnalista}}</div>
           <div class="css-right">500</div>
 
           <div class="css-left">Tipo de Soporte</div>
