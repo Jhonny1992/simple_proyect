@@ -15,14 +15,14 @@ export class HelpdeskComponent implements OnInit {
 
   tipoAtencion: TipoAtencion[] = [];
   requerimientos: Requerimientos[] = [];
-  canales: Canales[] =[];
-  dias: Dias[] =[];
-  servicios:  TipoServicio[] = [];
+  canales: Canales[] = [];
+  dias: Dias[] = [];
+  servicios: TipoServicio[] = [];
 
   precioPorAnalista: number = 0.005;
-  PRECIO_PREMIUM_ONSITE : number = 3500
+  PRECIO_PREMIUM_ONSITE: number = 3500
 
-  cantidadAnalista: number =0;
+  cantidadAnalista: number = 0;
   cantidadSelecReq: number = 0;
   cantidadSelectCanales: number = 0;
 
@@ -43,15 +43,11 @@ export class HelpdeskComponent implements OnInit {
   precioJornada: number = 0;
   precioXAnalista: number = 0;
 
-  horaAproximada: number= 0;
+  horaAproximada: number = 0;
 
-  SeleccionServicio:number=0;
+  SeleccionServicio: number = 0;
 
   PRECIO_BASE_JORNADA: number = 3000;
-
-  AÑO_UNO: number = 12;
-  AÑO_DOS: number = 24;
-  AÑO_TRES: number = 36;
 
   precioServicio: number | undefined = 0;
 
@@ -60,6 +56,7 @@ export class HelpdeskComponent implements OnInit {
   pagoAnios: number = 0;
 
   pagoTotal: number = 0;
+
   constructor(private helpdeskService: HelpdeskService) {
     this.listTipoAtencion2()
     this.listTipoAtencion();
@@ -71,18 +68,19 @@ export class HelpdeskComponent implements OnInit {
 
   ngOnInit(): void {
   }
- // OBTENIENDO LOS SERVICIOS
-  listTipoAtencion2(): void{
+
+  // OBTENIENDO LOS SERVICIOS
+  listTipoAtencion2(): void {
     this.helpdeskService.listTipoAtencion2().subscribe({
-      next:(resp) => {
+      next: (resp) => {
         console.log(resp)
       }
     })
   }
 
-  listTipoAtencion(): void{
+  listTipoAtencion(): void {
     this.helpdeskService.listTipoAtencion().subscribe({
-      next:(resp) => {
+      next: (resp) => {
         this.tipoAtencion = resp;
         console.log(this.tipoAtencion)
       }
@@ -91,33 +89,34 @@ export class HelpdeskComponent implements OnInit {
 
   listDias(): void {
     this.helpdeskService.listDias().subscribe({
-      next:(resp) => {
+      next: (resp) => {
         this.dias = resp;
         console.log(this.dias)
       }
     })
   }
 
-  listRequerimientos(): void{
+  listRequerimientos(): void {
     this.helpdeskService.listRequerimientos().subscribe({
-      next:(resp) => {
+      next: (resp) => {
         this.requerimientos = resp;
         console.log(this.requerimientos)
       }
     })
   }
 
-  listCanales(): void{
+  listCanales(): void {
     this.helpdeskService.listCanales().subscribe({
-      next:(resp) => {
+      next: (resp) => {
         this.canales = resp;
         console.log(this.canales)
       }
     })
   }
+
   listTipoServicio(): void {
     this.helpdeskService.listTipoServicio().subscribe({
-      next:(resp) => {
+      next: (resp) => {
         this.servicios = resp;
         console.log(this.servicios)
       }
@@ -132,42 +131,42 @@ export class HelpdeskComponent implements OnInit {
 
   onRadioChangeAno(event: any): void {
     this.añoSeleccionado = event.target.value;
-    if(this.añoSeleccionado == 12){
+    if (this.añoSeleccionado == 12) {
       this.verAnio = "1";
-    } else if(this.añoSeleccionado == 24){
+    } else if (this.añoSeleccionado == 24) {
       this.verAnio = "2"
-    } else{
+    } else {
       this.verAnio = "3 a más"
     }
     console.log('Duración seleccionada:', this.añoSeleccionado);
   }
 
   onRadioChangeServicio(servicio: TipoServicio): void {
-    if(servicio){
-      this.SeleccionServicio=1;
+    if (servicio) {
+      this.SeleccionServicio = 1;
     }
     this.servicioSeleccionado = servicio.porcentaje;
     console.log('Precio seleccionado:', this.servicioSeleccionado);
   }
 
   onCheckboxRequerimiento(requerimiento: Requerimientos): void {
-    if(requerimiento.selected === true){
-      this.selectedRequerimientos -=1
-    }else{
+    if (requerimiento.selected === true) {
+      this.selectedRequerimientos -= 1
+    } else {
       this.selectedRequerimientos += 1
     }
   }
 
   onCheckboxCanal(canal: Canales): void {
-    if(canal.selected === true){
+    if (canal.selected === true) {
       this.selectedCanal -= 1
-    }else{
+    } else {
       this.selectedCanal += 1
     }
   }
 
   // TODA LA LOGICA PARA COTIZAR
-  async cotizaciones(){
+  async cotizaciones() {
 
     // SI TODOS LOS CAMPOS ESTÁN LLENOS CONTINUA, SINO, NO.
     if (!this.validarCampos()) {
@@ -183,7 +182,7 @@ export class HelpdeskComponent implements OnInit {
 
     await this.pagoTotalCotizacion();
     //quitarlo cuando finalice pruebas
-    this.calcularDias()
+    //this.calcularDias()
   }
 
   cantidadAnalistas(): void {
@@ -207,7 +206,7 @@ export class HelpdeskComponent implements OnInit {
         if (req.codigo === '05') {
           return total + req.precio * this.numUsuarios * 12;
         } else if (req.codigo === '06') {
-          return total + (req.precio * this.numUsuarios)  * this.PRECIO_PREMIUM_ONSITE * 12;
+          return total + (req.precio * this.numUsuarios) * this.PRECIO_PREMIUM_ONSITE * 12;
         }
         return total;
       }, 0);
@@ -217,9 +216,9 @@ export class HelpdeskComponent implements OnInit {
 
   }
 
-  canalesAtencion(){
+  canalesAtencion() {
     let auxCanalesSeleccionados = 0;
-    this.cantidadSelectCanales= this.canales.filter(req => req.selected).length;
+    this.cantidadSelectCanales = this.canales.filter(req => req.selected).length;
 
     if (this.AtencionSeleccionado !== undefined) {
       auxCanalesSeleccionados = this.canales.filter(req => req.selected)
@@ -239,7 +238,7 @@ export class HelpdeskComponent implements OnInit {
     this.totalCanales = auxCanalesSeleccionados
   }
 
-  precioTotalHoracioAtencion(){
+  precioTotalHoracioAtencion() {
     this.calcularHoraAproximada();
 
   }
@@ -253,61 +252,61 @@ export class HelpdeskComponent implements OnInit {
 
     // Calcula la hora aproximada redondeando hacia arriba si los minutos son mayores a 30
     this.horaAproximada = Math.ceil(minutos / 60);
-    let  auxPrecioJornada =0;
-    if(this.horaAproximada <= 8){
+    let auxPrecioJornada = 0;
+    if (this.horaAproximada <= 8) {
       auxPrecioJornada = this.PRECIO_BASE_JORNADA
-    }else if(this.horaAproximada >8 && this.horaAproximada <12){
+    } else if (this.horaAproximada > 8 && this.horaAproximada < 12) {
       auxPrecioJornada = Math.round(this.PRECIO_BASE_JORNADA * 1.1)
-    }else if(this.horaAproximada>12){
+    } else if (this.horaAproximada > 12) {
       auxPrecioJornada = Math.round(this.PRECIO_BASE_JORNADA * 1.2)
     }
     this.precioJornada = auxPrecioJornada
 
   }
 
-  async costoPorAnalista(){
+  async costoPorAnalista() {
     await this.tiposServicios()
     console.log(this.AtencionSeleccionado)
-    if(this.AtencionSeleccionado == 3000){
+    if (this.AtencionSeleccionado == 3000) {
       console.log(this.precioServicio!)
       this.precioXAnalista = this.precioServicio! + this.precioJornada;
-    }else{
+    } else {
       this.precioXAnalista = this.precioServicio! + this.AtencionSeleccionado
     }
 
 
   }
 
-  calcularDias(){
+  calcularDias() {
     const auxDiasSeleccionados = this.dias.filter(req => req.selected);
     console.log(auxDiasSeleccionados)
   }
 
-  tiposServicios(){
-    if(this.AtencionSeleccionado == 3000){
-      if(this.servicioSeleccionado !== undefined){
+  tiposServicios() {
+    if (this.AtencionSeleccionado == 3000) {
+      if (this.servicioSeleccionado !== undefined) {
         this.precioServicio = this.servicioSeleccionado * this.precioJornada
       }
-    }else{
-      if(this.servicioSeleccionado !== undefined) {
+    } else {
+      if (this.servicioSeleccionado !== undefined) {
         this.precioServicio = this.servicioSeleccionado * this.AtencionSeleccionado
       }
     }
 
   }
 
-  pagoTotalCotizacion(){
-    const diasSeleccionados  = this.dias.filter(req => req.selected);
+  pagoTotalCotizacion() {
+    const diasSeleccionados = this.dias.filter(req => req.selected);
     const porcentajesSeleccionados = diasSeleccionados.map(dia => dia.porcentaje);
     const productoPorcentajes = porcentajesSeleccionados.reduce((total, porcentaje) => total * porcentaje, 1);
-    this.pagoTotal = (this.cantidadAnalista * this.precioXAnalista * 12 * productoPorcentajes) + this.totalRequerimientos ;
+    this.pagoTotal = (this.cantidadAnalista * this.precioXAnalista * 12 * productoPorcentajes) + this.totalRequerimientos;
     this.pagoTotal = parseFloat(this.pagoTotal.toFixed(2));
     this.pagoAnios = this.pagoTotal;
-    if(this.verAnio == "2"){
-      this.pagoAnios =this.pagoTotal * 0.95
+    if (this.verAnio == "2") {
+      this.pagoAnios = this.pagoTotal * 0.95
       this.pagoAnios = parseFloat(this.pagoAnios.toFixed(2));
-    }else if( this.verAnio == "3 a más"){
-      this.pagoAnios =this.pagoTotal * 0.90
+    } else if (this.verAnio == "3 a más") {
+      this.pagoAnios = this.pagoTotal * 0.90
       this.pagoAnios = parseFloat(this.pagoAnios.toFixed(2));
     }
   }

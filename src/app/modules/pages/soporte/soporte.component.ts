@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {HelpdeskService} from "../../services/helpdesk/helpdesk.service";
-import {TipoAtencion} from "../../../model/helpdesk/TipoAtencion";
-import {Requerimientos} from "../../../model/helpdesk/Requerimientos";
+import {SoporteService} from "../../services/soporte/soporte.service";
+import {TipoServicio} from "../../../model/helpdesk/TipoServicio";
+import {Servicio} from "../../../model/soporte/Servicio";
+import {HorarioAtencion} from "../../../model/soporte/HorarioAtencion";
+import {Actividades} from "../../../model/soporte/Actividades";
+import {TipoEquipos} from "../../../model/soporte/TipoEquipos";
 
 @Component({
   selector: 'app-soporte',
@@ -10,41 +13,60 @@ import {Requerimientos} from "../../../model/helpdesk/Requerimientos";
 })
 export class SoporteComponent implements OnInit {
 
-  tipoAtencion: TipoAtencion[] = [];
-  requerimientos: Requerimientos[] = [];
+  tipoServicio: Servicio[]=[];
+  horarioAtencion: HorarioAtencion[]=[];
+  actividades: Actividades[]=[];
+  tipoEquipos: TipoEquipos[] = [];
 
-  constructor(private helpdeskService: HelpdeskService) {
-    this.listTipoAtencion();
-    this.listRequerimientos();
-    this.listTipoAtencion2()
+  constructor(private soporteService: SoporteService) {
+    this.listTipoServicio();
+    this.listHoraAtencion();
+    this.listActividades();
+    this.listTipoEquipos();
   }
 
   ngOnInit(): void {
 
   }
 
-  listTipoAtencion2(): void{
-    this.helpdeskService.listTipoAtencion2().subscribe({
-      next:(resp) => {
-        console.log(resp)
+  listTipoServicio(): void {
+    this.soporteService.listTipoServicio().subscribe({
+      next: (resp) => {
+        this.tipoServicio = resp;
+        console.log(this.tipoServicio)
       }
     })
   }
 
-  listTipoAtencion(): void{
-    this.helpdeskService.listTipoAtencion().subscribe({
-      next:(resp) => {
-        this.tipoAtencion = resp;
-        console.log(this.tipoAtencion)
+  listHoraAtencion(): void {
+    this.soporteService.listHorarioAtencion().subscribe({
+      next: (resp) => {
+        this.horarioAtencion = resp;
+        console.log(this.horarioAtencion)
       }
     })
   }
-  listRequerimientos(): void{
-    this.helpdeskService.listRequerimientos().subscribe({
-      next:(resp) => {
-        this.requerimientos = resp;
-        console.log(this.requerimientos)
+
+  listActividades(): void {
+    this.soporteService.listActividades().subscribe({
+      next: (resp) => {
+        this.actividades = resp;
+        console.log(this.actividades)
       }
     })
   }
+
+  listTipoEquipos(): void {
+    this.soporteService.listTipoEquipos().subscribe({
+      next: (resp) => {
+        this.tipoEquipos = resp;
+        console.log(this.tipoEquipos)
+      }
+    })
+  }
+
+  cotizacion(): void {
+
+  }
+
 }
