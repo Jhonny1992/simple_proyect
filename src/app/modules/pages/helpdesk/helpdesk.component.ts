@@ -303,10 +303,10 @@ export class HelpdeskComponent implements OnInit {
     this.pagoTotal = parseFloat(this.pagoTotal.toFixed(2));
     this.pagoAnios = this.pagoTotal;
     if (this.verAnio == "2") {
-      this.pagoAnios = this.pagoTotal * 0.95
+      this.pagoAnios = this.pagoTotal * 0.95 * 2
       this.pagoAnios = parseFloat(this.pagoAnios.toFixed(2));
     } else if (this.verAnio == "3 a más") {
-      this.pagoAnios = this.pagoTotal * 0.90
+      this.pagoAnios = this.pagoTotal * 0.90 * 3
       this.pagoAnios = parseFloat(this.pagoAnios.toFixed(2));
     }
   }
