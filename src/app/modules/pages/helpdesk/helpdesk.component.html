@@ -94,7 +94,7 @@
     </div>
 
     <div class="col-md-4">
-      <h5>7. Tipo de Servicio</h5>
+      <h5>7. Modalidad</h5>
       <div *ngFor="let servicio of servicios" class="form-check">
         <input class="form-check-input" type="radio" name="servicios" [id]="'radio2-' + servicio.codigo" [value]="servicio.codigo"
                (change)="onRadioChangeServicio(servicio)">
@@ -140,7 +140,7 @@
           <div class="css-right">{{horaAproximada}} </div>
           <div class="css-right">{{precioJornada}}</div>
 
-          <div class="css-left">Tipo de Servicio(Incluye CA)</div>
+          <div class="css-left">Modalidad(Incluye CA)</div>
           <div class="css-right"> </div>
           <div class="css-right">{{precioServicio}}</div>
 
