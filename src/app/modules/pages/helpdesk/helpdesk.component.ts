@@ -49,6 +49,7 @@ export class HelpdeskComponent implements OnInit {
 
   PRECIO_BASE_JORNADA: number = 3000;
 
+
   precioServicio: number | undefined = 0;
 
   verAnio: any
@@ -182,7 +183,7 @@ export class HelpdeskComponent implements OnInit {
 
     await this.pagoTotalCotizacion();
     //quitarlo cuando finalice pruebas
-    //this.calcularDias()
+    this.calcularDias()
   }
 
   cantidadAnalistas(): void {
@@ -303,10 +304,10 @@ export class HelpdeskComponent implements OnInit {
     this.pagoTotal = parseFloat(this.pagoTotal.toFixed(2));
     this.pagoAnios = this.pagoTotal;
     if (this.verAnio == "2") {
-      this.pagoAnios = this.pagoTotal * 0.95
+      this.pagoAnios = this.pagoTotal * 0.95 * 2
       this.pagoAnios = parseFloat(this.pagoAnios.toFixed(2));
     } else if (this.verAnio == "3 a más") {
-      this.pagoAnios = this.pagoTotal * 0.90
+      this.pagoAnios = this.pagoTotal * 0.90 * 3
       this.pagoAnios = parseFloat(this.pagoAnios.toFixed(2));
     }
   }

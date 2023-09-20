@@ -12,45 +12,49 @@
         </label>
       </div> -->
       <div *ngFor="let servicio of tipoServicio" class="form-check">
-        <input class="form-check-input" type="radio" name="tipoServicio" id="rdTipo1" value="Tipo1">
-        <label class="form-check-label" for="rdTipo1">
+        <input class="form-check-input" type="radio" name="tipoServicio" [id]="'radio-' + servicio.codigo" value="Tipo1" (change)="onRadioChangeTipServicio(servicio)">
+        <label class="form-check-label" [for]="'radio-' + servicio.codigo">
           {{servicio.descripcion}}
         </label>
       </div>
 
       <h5 class="mt-3">2. Horario del Servicio</h5>
       <div *ngFor="let horario of horarioAtencion" class="form-check">
-        <input class="form-check-input" type="radio" name="horarioServicio" id="rdhorario1" value="Horario1">
-        <label class="form-check-label" for="rdhorario1">
+        <input class="form-check-input" type="radio" name="horarioServicio" [id]="'radio2-' + horario.codigo" [value]="horario.codigo"
+               (change)="onRadioChangeHorarioAtencion(horario)">
+        <label class="form-check-label" [for]="'radio2-' + horario.codigo">
           {{horario.descripcion}}
         </label>
       </div>
 
       <h5 class="mt-3">3. Actividades específicas</h5>
       <div *ngFor="let actividad of actividades" class="form-check">
-        <input class="form-check-input" type="checkbox" id="chkActividad1" value="Actividad1">
-        <label class="form-check-label" for="chkActividad1">
+        <input class="form-check-input" type="checkbox" [id]="'check-' + actividad.codigo" value="actividad.codigo" [(ngModel)]="actividad.selected"
+               (click)="onCheckboxActividades(actividad)">
+        <label class="form-check-label" [for]="'check-' + actividad.codigo">
           {{actividad.descripcion}}
         </label>
       </div>
     </div>
     <div class="col-md-4">
 
-      <h5 class="mt-3">5. Cantidad de Usuarios</h5>
+      <h5 class="mt-3">5. Cantidad de Equipos</h5>
       <div class="col-md-10">
-        <input placeholder="Ejm:100" class="form-control" type="number" id="cantidadUsuarios" name="cantidadUsuarios" min="0">
+        <input placeholder="Ejm:100" class="form-control" type="number" id="cantidadUsuarios" name="cantidadUsuarios" min="0"
+               [(ngModel)]="numEquipos">
       </div>
 
       <h5 class="mt-3">5. Tipos de Equipos</h5>
       <div *ngFor="let equipo of tipoEquipos" class="form-check">
-        <input class="form-check-input" type="checkbox" id="chkTipoEquipo1" value="tipoEquipo 1">
-        <label class="form-check-label" for="chkTipoEquipo1">
+        <input class="form-check-input" type="checkbox" [id]="'check2-' + equipo.codigo" [value]="equipo.codigo" [(ngModel)]="equipo.selected"
+               (click)="onCheckboxEquipos(equipo)">
+        <label class="form-check-label" [for]="'check2-' + equipo.codigo">
           {{equipo.descripcion}}
         </label>
       </div>
       <div class="row mt-3">
         <div class="col-md-3">
-          <button type="button" class="btn btn-primary">COTIZAR</button>
+          <button (click)="cotizacion()" type="button" class="btn btn-primary">COTIZAR</button>
         </div>
         <div class="col-md-3">
           <button type="button" class="btn btn-secondary">LIMPIAR</button>
@@ -68,28 +72,28 @@
         </div>
         <div class="css-grid-table-body">
           <div class="css-left">Cantidad de Equipos</div>
-          <div class="css-right">5</div>
-          <div class="css-right">500</div>
+          <div class="css-right">{{numEquipos}}</div>
+          <div class="css-right">{{sumaActivEquip}}</div>
 
           <div class="css-left">Costo por Actividades Específicas</div>
-          <div class="css-right"> </div>
-          <div class="css-right">1</div>
+          <div class="css-right">{{cantidadActividades}}</div>
+          <div class="css-right">{{precioTotalActividades}}</div>
 
           <div class="css-left">Costo por Servicio</div>
           <div class="css-right"> </div>
-          <div class="css-right">2</div>
+          <div class="css-right">{{tipServicioSeleccionado}}</div>
 
           <div class="css-left">Costo por Horario</div>
           <div class="css-right"> </div>
-          <div class="css-right">2</div>
+          <div class="css-right">{{costoPorHorario}}</div>
 
           <div class="css-left">Costo por Tipo de Equipos</div>
-          <div class="css-right"> </div>
-          <div class="css-right">15</div>
+          <div class="css-right">{{cantidadEquipo}}</div>
+          <div class="css-right">{{precioTotalEquipos}}</div>
 
           <div class="css-left"> </div>
           <div class="css-right">Total $</div>
-          <div class="css-right css-total">10780</div>
+          <div class="css-right css-total">{{neto}}</div>
 
           <div class="col-md-3">
 
