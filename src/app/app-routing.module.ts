@@ -13,6 +13,7 @@ const routes: Routes = [
   {path:'helpdesk', component:HelpdeskComponent},
   {path:'soporte', component:SoporteComponent},
   {path:'outsourcing', component:OutsourcingComponent},
+
   {path:'**', redirectTo:'login'}
 ]
 
