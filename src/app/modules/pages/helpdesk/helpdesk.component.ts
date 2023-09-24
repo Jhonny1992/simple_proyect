@@ -6,6 +6,7 @@ import {Canales} from "../../../model/helpdesk/Canales";
 import {Dias} from "../../../model/helpdesk/Dias";
 import {TipoServicio} from "../../../model/helpdesk/TipoServicio";
 import {AuthService} from "../../services/auth/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-helpdesk',
@@ -81,7 +82,8 @@ export class HelpdeskComponent implements OnInit {
     costoXServicio : ''
   }
   constructor(private helpdeskService: HelpdeskService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private route: Router) {
 
     console.log(this.userName);
     this.listTipoAtencion();
@@ -397,8 +399,6 @@ export class HelpdeskComponent implements OnInit {
     this.verAnio = '';
     this.pagoAnios = 0;
 
-
-
     // Resetea los valores de los radio buttons
     this.tipoAtencionSeleccionado = '';
     this.modalidadSeleccionado = '';
@@ -419,8 +419,13 @@ export class HelpdeskComponent implements OnInit {
   }
 
   grabarCotizacion(): void {
+    if (!this.validarCampos()) {
+      return; // Si hay campos vacíos, no continúa
+    }
+    if(!this.pagoAnios){
+      return
+    }
     this.OutsourcingCotizacion ={
-        nroCotizacion:"10",
         tipoServicio : this.nombreAtencion,
         duracion : this.anios,
         usuarios : this.userName,
@@ -428,9 +433,16 @@ export class HelpdeskComponent implements OnInit {
         costoXAno : this.pagoAnios
     }
 
-    this.helpdeskService.grabarCotizacion(this.OutsourcingCotizacion).subscribe()
-
-
+    this.helpdeskService.grabarCotizacion(this.OutsourcingCotizacion).subscribe({
+      next:(res) => {
+        console.log(res);
+      }
+    })
 }
+
+ verCotizacion(): void {
+    this.route.navigate(['/listar-helpdesk'])
+
+ }
 
 }
