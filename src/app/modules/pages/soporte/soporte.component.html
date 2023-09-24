@@ -5,12 +5,6 @@
   <div class="row mt-4">
     <div class="col-md-4">
       <h5>1. Tipo de Servicio</h5>
-      <!-- <div *ngFor="let atencion of tipoAtencion" class="form-check">
-        <input class="form-check-input" type="radio" name="tipoAtencion" id="{{atencion.codigo}}" value="atencion.codigo">
-        <label class="form-check-label" [for]="atencion.codigo">
-          {{atencion.nombre}}
-        </label>
-      </div> -->
       <div *ngFor="let servicio of tipoServicio" class="form-check">
         <input class="form-check-input" type="radio" name="tipoServicio" id="rdTipo1" value="Tipo1">
         <label class="form-check-label" for="rdTipo1">
@@ -36,9 +30,9 @@
     </div>
     <div class="col-md-4">
 
-      <h5 class="mt-3">5. Cantidad de Usuarios</h5>
+      <h5 class="mt-3">4. Cantidad de Equipos</h5>
       <div class="col-md-10">
-        <input placeholder="Ejm:100" class="form-control" type="number" id="cantidadUsuarios" name="cantidadUsuarios" min="0">
+        <input placeholder="Ejm:100" class="form-control" type="number" id="cantidadEquipos" name="cantidadEquipos" min="1">
       </div>
 
       <h5 class="mt-3">5. Tipos de Equipos</h5>
@@ -91,13 +85,13 @@
           <div class="css-right">Total $</div>
           <div class="css-right css-total">10780</div>
 
-          <div class="col-md-3">
-
+          <div class="css-right">
+            <button type="button" class="btn btn-success" [routerLink]="['/listadoSoporte']">Ver Cotizaciones</button>
           </div>
-          <div class="col-md-3">
+          <div class="css-right">
             <a class="btn btn-link" [routerLink]="['/main']" role="button">RETORNAR</a>
           </div>
-          <div class="col-md-3">
+          <div class="css-right">
             <button type="button" class="btn btn-success">GRABAR</button>
           </div>
         </div>

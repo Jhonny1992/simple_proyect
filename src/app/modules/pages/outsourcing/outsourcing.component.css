@@ -6,12 +6,12 @@
 
 .css-grid-table {
     grid-template-rows: 24px 72px;
-    width: 80%;
+    width: 100%;
 }
 
 .css-grid-table-header,
 .css-grid-table-body {
-    grid-template-columns: 170px 130px 90px;
+    grid-template-columns: 320px 110px 110px;
     width: 100%;
     line-height: 20px; 
 }
