@@ -6,11 +6,13 @@ import {HelpdeskComponent} from "./modules/pages/helpdesk/helpdesk.component";
 import {MainComponent} from "./modules/pages/main/main.component";
 import { SoporteComponent } from './modules/pages/soporte/soporte.component';
 import { OutsourcingComponent } from './modules/pages/outsourcing/outsourcing.component';
+import {HelpdeskListarComponent} from "./modules/pages/helpdesk/helpdesk-listar/helpdesk-listar.component";
 
 const routes: Routes = [
   {path:'login', component: LoginComponent},
   {path:'main', component:MainComponent},
-  {path:'helpdesk', component:HelpdeskComponent},
+  {path: 'helpdesk', component: HelpdeskComponent},
+  {path: 'listar-helpdesk', component: HelpdeskListarComponent},
   {path:'soporte', component:SoporteComponent},
   {path:'outsourcing', component:OutsourcingComponent},
 

@@ -117,13 +117,7 @@ export class OutsourcingComponent implements OnInit {
       window.alert('El campo cantidad de analistas es requerido.');
     }else if(this.myForm.get('tipoModalidad')?.value == '' || this.myForm.get('tipoModalidad')?.value == null){
       window.alert('La modalidad es requerido.');
-    }
-
-    //let hola = this.myForm.get('servicio')?.patchValue('');
-    /*if (this.myForm.get('servicio')?.value == 'Seleccione Servicio') {
-      // Si algún campo está vacío, muestra un mensaje de alerta
-      window.alert('Por favor, complete todos los campos del formulario.');
-    }*/else{
+    } else{
       console.log( this.myForm)
       await this.precioServicioAndSubServicio();
       await this.precioModalidad();

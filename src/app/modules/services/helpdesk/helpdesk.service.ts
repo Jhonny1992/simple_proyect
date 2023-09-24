@@ -40,4 +40,12 @@ export class HelpdeskService {
   listDias(): Observable<Dias[]> {
     return this.http.get<Dias[]>(`${this.url}/dias`)
   }
+
+  grabarCotizacion(jsonCotizacion: any): Observable<any> {
+    return this.http.post<any>(`${this.url}/helpdesk/grabar`,jsonCotizacion)
+  }
+
+  listarCotizacion(): Observable<any>{
+    return this.http.get<any>(`${this.url}/helpdesk/listar`)
+  }
 }
