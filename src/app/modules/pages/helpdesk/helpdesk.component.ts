@@ -7,6 +7,7 @@ import {Dias} from "../../../model/helpdesk/Dias";
 import {TipoServicio} from "../../../model/helpdesk/TipoServicio";
 import {AuthService} from "../../services/auth/auth.service";
 import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-helpdesk',
@@ -83,7 +84,8 @@ export class HelpdeskComponent implements OnInit {
   }
   constructor(private helpdeskService: HelpdeskService,
               private authService: AuthService,
-              private route: Router) {
+              private route: Router,
+              private toastr: ToastrService) {
 
     console.log(this.userName);
     this.listTipoAtencion();
@@ -423,6 +425,7 @@ export class HelpdeskComponent implements OnInit {
       return; // Si hay campos vacíos, no continúa
     }
     if(!this.pagoAnios){
+      this.toastr.warning("Debe generar cotización")
       return
     }
     this.OutsourcingCotizacion ={
@@ -435,6 +438,7 @@ export class HelpdeskComponent implements OnInit {
 
     this.helpdeskService.grabarCotizacion(this.OutsourcingCotizacion).subscribe({
       next:(res) => {
+        this.toastr.success("Se guardo exitosamente")
         console.log(res);
       }
     })
