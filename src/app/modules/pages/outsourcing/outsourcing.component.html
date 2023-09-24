@@ -11,9 +11,9 @@
           <option value="">Seleccione Servicio</option>
           <option *ngFor="let servicio of servicios" [value]="servicio.codigo">{{ servicio.descripcion }}</option>
         </select>
-        <div *ngIf="servicioPresionado && myForm.get('servicio')?.hasError('required')" class="text-danger">
+        <!--<div *ngIf="servicioPresionado && myForm.get('servicio')?.hasError('required')" class="text-danger">
           El servicio es requerido.
-        </div>
+        </div>-->
       </div>
       <div class="form-group">
         <label>Seleccione un sub-servicio:</label>
@@ -21,9 +21,9 @@
           <option value="">Seleccione un sub-servicio</option>
           <option *ngFor="let subServicio of subServicios" [value]="subServicio.precio">{{ subServicio.descripcion }}</option>
         </select>
-        <div *ngIf="servicioPresionado && myForm.get('subServicio')?.hasError('required')" class="text-danger">
+        <!--<div *ngIf="servicioPresionado && myForm.get('subServicio')?.hasError('required')" class="text-danger">
           El sub-servicio es requerido.
-        </div>
+        </div>-->
         </div>
 
       <div class="form-group">
@@ -31,9 +31,9 @@
       <div class="col-md-10">
         <input placeholder="Ejm:2" class="form-control" type="number" formControlName="horasServicio" name="horaServicio" min="1">
       </div>
-        <div *ngIf="servicioPresionado && myForm.get('horasServicio')?.hasError('required')" class="text-danger">
+        <!--<div *ngIf="servicioPresionado && myForm.get('horasServicio')?.hasError('required')" class="text-danger">
           El campo hora es requerido.
-        </div>
+        </div>-->
         </div>
 
       <div class="form-group">
@@ -41,66 +41,66 @@
       <div class="col-md-10">
         <input placeholder="Ejm:100" class="form-control" type="number" formControlName="cantAnalistas" name="cantidadAnalistas" min="0">
       </div>
-      <div *ngIf="servicioPresionado && myForm.get('cantAnalistas')?.hasError('required')" class="text-danger">
-        El campo cantidad de analistas es requerido.
-      </div>
-      </div>
-
-      <div class="form-group">
-      <h5 class="mt-3">4. Tipo de Modalidad</h5>
-      <div *ngFor="let modalidad of modalidades; let i = index" class="form-check">
-        <input class="form-check-input" type="radio" [id]="'radio' + i" [name]="'tipoModalidad'" [formControlName]="'tipoModalidad'" [value]="modalidad.porcentaje">
-        <label class="form-check-label" [for]="'radio' + i">
-          {{ modalidad.descripcion }}
-        </label>
-      </div>
-      <div *ngIf="servicioPresionado && myForm.get('tipoModalidad')?.hasError('required')" class="text-danger">
-        La modalidad es requerido.
-      </div>
-      </div>
-      <div class="row mt-3">
-        <div class="col-md-3">
-          <button type="submit" class="btn btn-primary">COTIZAR</button>
+        <!--<div *ngIf="servicioPresionado && myForm.get('cantAnalistas')?.hasError('required')" class="text-danger">
+          El campo cantidad de analistas es requerido.
+        </div>-->
         </div>
-        <div class="col-md-3">
-          <button type="button" class="btn btn-secondary">LIMPIAR</button>
+
+        <div class="form-group">
+        <h5 class="mt-3">4. Tipo de Modalidad</h5>
+        <div *ngFor="let modalidad of modalidades; let i = index" class="form-check">
+          <input class="form-check-input" type="radio" [id]="'radio' + i" [name]="'tipoModalidad'" [formControlName]="'tipoModalidad'" [value]="modalidad.porcentaje">
+          <label class="form-check-label" [for]="'radio' + i">
+            {{ modalidad.descripcion }}
+          </label>
         </div>
-      </div>
-    </div>
-    <div class="col-md-7">
-      <div class="row mt-3">
-      <div class="css-grid-table">
-        <div class="css-grid-table-header" style="border-bottom: 1px solid;">
-          <div class="css-left">Detalle</div>
-          <div class="css-right">Cantidad</div>
-          <div class="css-right">Total $</div>
-        </div>
-        <div class="css-grid-table-body">
-          <div class="css-left">Servicio + SubServicio <br>(Incluye HS y CA)</div>
-          <div class="css-right" style="line-height: 4;">2</div>
-          <div class="css-right" style="line-height: 4;">{{totalServicioAndSubservicio}}</div>
-
-          <div class="css-left">Modalidad Híbrida</div>
-          <div class="css-right"> </div>
-          <div class="css-right">{{totalModalidad}}</div>
-
-          <div class="css-left"> </div>
-          <div class="css-right">Total $</div>
-          <div class="css-right css-total">{{totalPagarServicios}}</div>
-
-          <div class="col-md-3">
-
+          <!--<div *ngIf="servicioPresionado && myForm.get('tipoModalidad')?.hasError('required')" class="text-danger">
+            La modalidad es requerido.
+          </div>-->
           </div>
-          <div class="col-md-3">
-            <a class="btn btn-secondary" [routerLink]="['/main']" role="button">RETORNAR</a>
-          </div>
-          <div class="col-md-3">
-            <button class="btn btn-success">GRABAR</button>
+          <div class="row mt-3">
+            <div class="col-md-3">
+              <button type="submit" class="btn btn-primary">COTIZAR</button>
+            </div>
+            <div class="col-md-3">
+              <button type="button" class="btn btn-secondary" (click)="cleanForm()">LIMPIAR</button>
+            </div>
           </div>
         </div>
+        <div class="col-md-7">
+          <div class="row mt-3">
+          <div class="css-grid-table">
+            <div class="css-grid-table-header" style="border-bottom: 1px solid;">
+              <div class="css-left">Detalle</div>
+              <div class="css-right">Cantidad</div>
+              <div class="css-right">Total $</div>
+            </div>
+            <div class="css-grid-table-body">
+              <div class="css-left">Servicio + SubServicio <br>(Incluye HS y CA)</div>
+              <div class="css-right" style="line-height: 4;"></div>
+              <div class="css-right" style="line-height: 4;">{{totalServicioAndSubservicio}}</div>
+
+              <div class="css-left">Modalidad Híbrida</div>
+              <div class="css-right"> </div>
+              <div class="css-right">{{totalModalidad}}</div>
+
+              <div class="css-left"> </div>
+              <div class="css-right">Total $</div>
+              <div class="css-right css-total">{{totalPagarServicios}}</div>
+
+              <div class="col-md-3">
+
+              </div>
+              <div class="col-md-3">
+                <a class="btn btn-secondary" [routerLink]="['/main']" role="button">RETORNAR</a>
+              </div>
+              <div class="col-md-3">
+                <button class="btn btn-success">GRABAR</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
       </div>
+        </form>
     </div>
-    </div>
-  </div>
-    </form>
-</div>

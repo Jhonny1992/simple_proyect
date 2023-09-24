@@ -107,11 +107,30 @@ export class OutsourcingComponent implements OnInit {
     this.horasServicio = this.myForm.get('horasServicio')?.value;
     this.cantAnalistas = this.myForm.get('cantAnalistas')?.value;
     this.tipoModalidad = this.myForm.get('tipoModalidad')?.value;
-    console.log(this.tipoModalidad)
+    if(this.myForm.get('servicio')?.value == '' || this.myForm.get('servicio')?.value == null){
+      window.alert('El servicio es requerido.');
+    }else if(this.myForm.get('subServicio')?.value == '' || this.myForm.get('subServicio')?.value == null){
+      window.alert('El sub-servicio es requerido.');
+    }else if(this.myForm.get('horasServicio')?.value == '' || this.myForm.get('horasServicio')?.value == null){
+      window.alert('El campo hora es requerido.');
+    }else if(this.myForm.get('cantAnalistas')?.value == '' || this.myForm.get('cantAnalistas')?.value == null){
+      window.alert('El campo cantidad de analistas es requerido.');
+    }else if(this.myForm.get('tipoModalidad')?.value == '' || this.myForm.get('tipoModalidad')?.value == null){
+      window.alert('La modalidad es requerido.');
+    }
 
-    await this.precioServicioAndSubServicio();
-    await this.precioModalidad();
-    await this.totalPagar();
+    //let hola = this.myForm.get('servicio')?.patchValue('');
+    /*if (this.myForm.get('servicio')?.value == 'Seleccione Servicio') {
+      // Si algún campo está vacío, muestra un mensaje de alerta
+      window.alert('Por favor, complete todos los campos del formulario.');
+    }*/else{
+      console.log( this.myForm)
+      await this.precioServicioAndSubServicio();
+      await this.precioModalidad();
+      await this.totalPagar();
+    }
+
+
 
   }
 
@@ -129,10 +148,24 @@ export class OutsourcingComponent implements OnInit {
     this.totalPagarServicios = this.totalServicioAndSubservicio + this.totalModalidad;
   }
 
-
-
-
-
-
-
+  cleanForm(): void {
+    console.log(this.myForm);
+    this.myForm.reset();
+    this.myForm.get('servicio')?.patchValue('');
+    this.myForm.get('subServicio')?.patchValue('');
+      this.servicioPresionado = false;
+      this.subServicioPresionado = false;
+      this.horasIngresadas = false;
+      this.totalServicioAndSubservicio =0;
+      this.totalModalidad = 0;
+      this.totalPagarServicios =0;
+  }
 }
+
+
+
+
+
+
+
+

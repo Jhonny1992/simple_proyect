@@ -6,7 +6,7 @@
     <div class="col-md-4">
       <h5>1. Tipo de Atencion</h5>
       <div *ngFor="let atencion of tipoAtencion" class="form-check">
-        <input class="form-check-input" type="radio" name="tipoAtencion" [id]="'radio-' + atencion.codigo" [value]="atencion.codigo"
+        <input class="form-check-input" type="radio" name="tipoAtencion" [id]="'radio-' + atencion.codigo" [value]="atencion.codigo" [(ngModel)]="tipoAtencionSeleccionado"
                (change)="onRadioChangeAtencion(atencion)">
         <label class="form-check-label" [for]="'radio-' + atencion.codigo">
           {{atencion.nombre}}
@@ -15,19 +15,19 @@
 
       <h5 class="mt-3">2. Duración del Servicio</h5>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="duracionServicio" id="radio3" value="12" (change)="onRadioChangeAno($event)">
+        <input class="form-check-input" type="radio" name="duracionServicio" id="radio3" value="12" (change)="onRadioChangeAno($event)" [(ngModel)]="duracionServicioSeleccionado">
         <label class="form-check-label" for="radio3">
           1 año
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="duracionServicio" id="radio4" value="24" (change)="onRadioChangeAno($event)">
+        <input class="form-check-input" type="radio" name="duracionServicio" id="radio4" value="24" (change)="onRadioChangeAno($event)" [(ngModel)]="duracionServicioSeleccionado">
         <label class="form-check-label" for="radio4">
           2 años
         </label>
       </div>
       <div class="form-check">
-        <input class="form-check-input" type="radio" name="duracionServicio" id="radio5" value="36" (change)="onRadioChangeAno($event)">
+        <input class="form-check-input" type="radio" name="duracionServicio" id="radio5" value="36" (change)="onRadioChangeAno($event)" [(ngModel)]="duracionServicioSeleccionado">
         <label class="form-check-label" for="radio4">
           3 años a más
         </label>
@@ -96,7 +96,7 @@
     <div class="col-md-4">
       <h5>7. Modalidad</h5>
       <div *ngFor="let servicio of servicios" class="form-check">
-        <input class="form-check-input" type="radio" name="servicios" [id]="'radio2-' + servicio.codigo" [value]="servicio.codigo"
+        <input class="form-check-input" type="radio" name="servicios" [id]="'radio2-' + servicio.codigo" [value]="servicio.codigo" [(ngModel)]="modalidadSeleccionado"
                (change)="onRadioChangeServicio(servicio)">
         <label class="form-check-label" [for]="'radio2-' + servicio.codigo">
           {{servicio.descripcion}}
@@ -108,7 +108,7 @@
           <button (click)="cotizaciones()" type="button" class="btn btn-primary">COTIZAR</button>
         </div>
         <div class="col-md-3">
-          <button type="button" class="btn btn-secondary">LIMPIAR</button>
+          <button type="button" class="btn btn-secondary" (click)="cleanFields()">LIMPIAR</button>
         </div>
       </div>
       <hr>

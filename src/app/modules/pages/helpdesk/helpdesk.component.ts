@@ -58,6 +58,9 @@ export class HelpdeskComponent implements OnInit {
 
   pagoTotal: number = 0;
 
+  tipoAtencionSeleccionado: string ='';
+  modalidadSeleccionado: string = '';
+  duracionServicioSeleccionado: string = '';
   constructor(private helpdeskService: HelpdeskService) {
     this.listTipoAtencion();
     this.listRequerimientos();
@@ -342,6 +345,56 @@ export class HelpdeskComponent implements OnInit {
     }
 
     return true;
+  }
+
+  cleanFields(): void {
+    // Resetea los valores de los campos a sus valores iniciales o vacíos
+    this.selectedCanal = 0;
+    this.horaInicioJornada = '';
+    this.horaFinJornada = '';
+    this.numUsuarios = 0;
+    this.SeleccionServicio = 0;
+    this.cantidadAnalista=0;
+    this.precioXAnalista = 0;
+    this.AtencionSeleccionado =0;
+    this.cantidadSelecReq = 0;
+    this.totalRequerimientos = 0;
+    this.cantidadSelectCanales =0;
+    this.totalCanales = 0;
+    this.horaAproximada = 0;
+    this.precioJornada = 0;
+    this.precioServicio = 0;
+    this.pagoTotal = 0;
+    this.verAnio = '';
+    this.pagoAnios = 0;
+
+
+
+    // Resetea los valores de los radio buttons
+    this.tipoAtencionSeleccionado = '';
+    this.modalidadSeleccionado = '';
+    this.duracionServicioSeleccionado = '';
+
+    // Resetea los valores de los checkboxes
+    this.requerimientos.forEach((requerimiento) => {
+      requerimiento.selected = false;
+    });
+
+    this.canales.forEach((canal) => {
+      canal.selected = false;
+    });
+
+    this.dias.forEach((dia) => {
+      dia.selected = false;
+    });
+
+    // Resetea los valores de otros campos si es necesario
+
+    // También puedes resetear los valores de los campos del formulario si es un FormGroup
+    // Ejemplo:
+    // this.myForm.reset();
+
+    // Finalmente, puedes agregar cualquier otra lógica de limpieza que necesites.
   }
 
 }
