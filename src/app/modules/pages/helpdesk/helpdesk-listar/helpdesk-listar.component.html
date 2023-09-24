@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">nro Cotización</th>
+    <th scope="col">Tipo de Servicio</th>
+    <th scope="col">Duración</th>
+    <th scope="col">Usuarios</th>
+    <th scope="col">Modalidad</th>
+    <th scope="col">Costo por año</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let cotizacion of listCotizacion">
+    <td>{{cotizacion.nroCotizacion}}</td>
+    <td>{{cotizacion.tipoServicio}}</td>
+    <td>{{cotizacion.duracion}}</td>
+    <td>{{cotizacion.usuarios}}</td>
+    <td>{{cotizacion.modalidad}}</td>
+    <td>{{cotizacion.costoXAno}}</td>
+  </tr>
+
+  </tbody>
+</table>

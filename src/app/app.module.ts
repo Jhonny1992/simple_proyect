@@ -11,8 +11,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { SoporteComponent } from './modules/pages/soporte/soporte.component';
 import { OutsourcingComponent } from './modules/pages/outsourcing/outsourcing.component';
-import { listadoOutsourcingComponent } from './modules/pages/outsourcing/listado/listado.component';
-import { listadoSoporteComponent } from './modules/pages/soporte/listado/listado.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +19,8 @@ import { listadoSoporteComponent } from './modules/pages/soporte/listado/listado
     LoginComponent,
     MainComponent,
     SoporteComponent,
+    OutsourcingComponent,
+    HelpdeskListarComponent,
     OutsourcingComponent,
     listadoOutsourcingComponent,
     listadoSoporteComponent

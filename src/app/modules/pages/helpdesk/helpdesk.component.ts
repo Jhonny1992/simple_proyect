@@ -5,6 +5,7 @@ import {Requerimientos} from "../../../model/helpdesk/Requerimientos";
 import {Canales} from "../../../model/helpdesk/Canales";
 import {Dias} from "../../../model/helpdesk/Dias";
 import {TipoServicio} from "../../../model/helpdesk/TipoServicio";
+import {AuthService} from "../../services/auth/auth.service";
 
 @Component({
   selector: 'app-helpdesk',
@@ -61,7 +62,28 @@ export class HelpdeskComponent implements OnInit {
   tipoAtencionSeleccionado: string ='';
   modalidadSeleccionado: string = '';
   duracionServicioSeleccionado: string = '';
-  constructor(private helpdeskService: HelpdeskService) {
+
+
+  // datos para guardar
+  codigoAtencion: string = '';
+  nombreServicio: string = '';
+  anios: string ='';
+  userName: string | null = '';
+  nombreAtencion: string = '';
+
+  OutsourcingCotizacion: any = {
+    nroCotizacion : '',
+    servicio : '',
+    subServicio : '',
+    horas : '',
+    personal : '',
+    tipo : '',
+    costoXServicio : ''
+  }
+  constructor(private helpdeskService: HelpdeskService,
+              private authService: AuthService) {
+
+    console.log(this.userName);
     this.listTipoAtencion();
     this.listRequerimientos();
     this.listCanales();
@@ -70,6 +92,7 @@ export class HelpdeskComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userName = this.authService.getUserName();
   }
 
   listTipoAtencion(): void {
@@ -120,6 +143,8 @@ export class HelpdeskComponent implements OnInit {
   // OBTENIENDO LOS CHECKBOX O RADIOBUTTON SELECCIONADOS
   onRadioChangeAtencion(atencion: TipoAtencion): void {
     this.AtencionSeleccionado = atencion.precio;
+    this.codigoAtencion = atencion.codigo;
+    this.nombreAtencion = atencion.nombre;
     console.log('Precio seleccionado:', this.AtencionSeleccionado);
   }
 
@@ -127,10 +152,13 @@ export class HelpdeskComponent implements OnInit {
     this.añoSeleccionado = event.target.value;
     if (this.añoSeleccionado == 12) {
       this.verAnio = "1";
+      this.anios = "1 años"
     } else if (this.añoSeleccionado == 24) {
       this.verAnio = "2"
+      this.anios = "2 años"
     } else {
       this.verAnio = "3 a más"
+      this.anios = "3 años a más"
     }
     console.log('Duración seleccionada:', this.añoSeleccionado);
   }
@@ -140,6 +168,7 @@ export class HelpdeskComponent implements OnInit {
       this.SeleccionServicio = 1;
     }
     this.servicioSeleccionado = servicio.porcentaje;
+    this.nombreServicio = servicio.descripcion
     console.log('Precio seleccionado:', this.servicioSeleccionado);
   }
 
@@ -375,7 +404,7 @@ export class HelpdeskComponent implements OnInit {
     this.modalidadSeleccionado = '';
     this.duracionServicioSeleccionado = '';
 
-    // Resetea los valores de los checkboxes
+    // Resetea los valores de los checkbox
     this.requerimientos.forEach((requerimiento) => {
       requerimiento.selected = false;
     });
@@ -387,14 +416,21 @@ export class HelpdeskComponent implements OnInit {
     this.dias.forEach((dia) => {
       dia.selected = false;
     });
-
-    // Resetea los valores de otros campos si es necesario
-
-    // También puedes resetear los valores de los campos del formulario si es un FormGroup
-    // Ejemplo:
-    // this.myForm.reset();
-
-    // Finalmente, puedes agregar cualquier otra lógica de limpieza que necesites.
   }
+
+  grabarCotizacion(): void {
+    this.OutsourcingCotizacion ={
+        nroCotizacion:"10",
+        tipoServicio : this.nombreAtencion,
+        duracion : this.anios,
+        usuarios : this.userName,
+        modalidad : this.nombreServicio,
+        costoXAno : this.pagoAnios
+    }
+
+    this.helpdeskService.grabarCotizacion(this.OutsourcingCotizacion).subscribe()
+
+
+}
 
 }
