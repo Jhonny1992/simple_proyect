@@ -42,8 +42,11 @@ export class OutsourcingComponent implements OnInit {
   tipoModalidad: number = 0;
   totalModalidad: number = 0;
   totalPagarServicios: number = 0;
+  totalXHoras: number = 0;
 
   numUsuarios: number = 0;
+
+
 
 
   servicioPresionado: boolean = false;
@@ -122,6 +125,7 @@ export class OutsourcingComponent implements OnInit {
       await this.precioServicioAndSubServicio();
       await this.precioModalidad();
       await this.totalPagar();
+      await this.totalPorHoras();
     }
 
 
@@ -141,6 +145,9 @@ export class OutsourcingComponent implements OnInit {
   totalPagar(): void {
     this.totalPagarServicios = this.totalServicioAndSubservicio + this.totalModalidad;
   }
+  totalPorHoras(): void {
+    this.totalXHoras = parseFloat((this.totalPagarServicios / this.horasServicio).toFixed(2));
+  }
 
   cleanForm(): void {
     console.log(this.myForm);
@@ -153,6 +160,7 @@ export class OutsourcingComponent implements OnInit {
       this.totalServicioAndSubservicio =0;
       this.totalModalidad = 0;
       this.totalPagarServicios =0;
+      this.totalXHoras = 0;
   }
 }
 
