@@ -5,12 +5,6 @@
   <div class="row mt-4">
     <div class="col-md-4">
       <h5>1. Tipo de Servicio</h5>
-      <!-- <div *ngFor="let atencion of tipoAtencion" class="form-check">
-        <input class="form-check-input" type="radio" name="tipoAtencion" id="{{atencion.codigo}}" value="atencion.codigo">
-        <label class="form-check-label" [for]="atencion.codigo">
-          {{atencion.nombre}}
-        </label>
-      </div> -->
       <div *ngFor="let servicio of tipoServicio" class="form-check">
         <input class="form-check-input" type="radio" name="tipoServicio" [id]="'radio-' + servicio.codigo" value="Tipo1" (change)="onRadioChangeTipServicio(servicio)">
         <label class="form-check-label" [for]="'radio-' + servicio.codigo">
@@ -99,7 +93,7 @@
 
           </div>
           <div class="col-md-3">
-            <a class="btn btn-link" [routerLink]="['/main']" role="button">RETORNAR</a>
+            <a class="btn btn-secondary" [routerLink]="['/main']" role="button">RETORNAR</a>
           </div>
           <div class="col-md-3">
             <button type="button" class="btn btn-success">GRABAR</button>
