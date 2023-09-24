@@ -59,7 +59,6 @@ export class HelpdeskComponent implements OnInit {
   pagoTotal: number = 0;
 
   constructor(private helpdeskService: HelpdeskService) {
-    this.listTipoAtencion2()
     this.listTipoAtencion();
     this.listRequerimientos();
     this.listCanales();
@@ -68,15 +67,6 @@ export class HelpdeskComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  // OBTENIENDO LOS SERVICIOS
-  listTipoAtencion2(): void {
-    this.helpdeskService.listTipoAtencion2().subscribe({
-      next: (resp) => {
-        console.log(resp)
-      }
-    })
   }
 
   listTipoAtencion(): void {

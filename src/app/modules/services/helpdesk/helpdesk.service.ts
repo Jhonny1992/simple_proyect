@@ -21,10 +21,6 @@ export class HelpdeskService {
   constructor(private http: HttpClient) {
   }
 
-  listTipoAtencion2(): Observable<TipoAtencion[]> {
-    return this.http.get<TipoAtencion[]>(this.url2);
-  }
-
   listTipoAtencion(): Observable<TipoAtencion[]> {
     return this.http.get<TipoAtencion[]>(`${this.url}/servicios`);
   }
