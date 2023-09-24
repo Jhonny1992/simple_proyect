@@ -156,7 +156,7 @@ export class HelpdeskComponent implements OnInit {
     this.añoSeleccionado = event.target.value;
     if (this.añoSeleccionado == 12) {
       this.verAnio = "1";
-      this.anios = "1 años"
+      this.anios = "1 año"
     } else if (this.añoSeleccionado == 24) {
       this.verAnio = "2"
       this.anios = "2 años"
@@ -431,7 +431,7 @@ export class HelpdeskComponent implements OnInit {
     this.OutsourcingCotizacion ={
         tipoServicio : this.nombreAtencion,
         duracion : this.anios,
-        usuarios : this.userName,
+        usuarios : this.numUsuarios.toString(),
         modalidad : this.nombreServicio,
         costoXAno : this.pagoAnios
     }
