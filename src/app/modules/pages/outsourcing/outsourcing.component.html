@@ -85,22 +85,25 @@
               <div class="css-right">{{totalModalidad}}</div>
 
               <div class="css-left"> </div>
+          <div class="css-right">Total por hora $</div>
+          <div class="css-right css-total">4700</div>
+
+              <div class="css-left"> </div>
               <div class="css-right">Total $</div>
               <div class="css-right css-total">{{totalPagarServicios}}</div>
 
-              <div class="col-md-3">
-
-              </div>
-              <div class="col-md-3">
-                <a class="btn btn-secondary" [routerLink]="['/main']" role="button">RETORNAR</a>
-              </div>
-              <div class="col-md-3">
-                <button class="btn btn-success">GRABAR</button>
-              </div>
-            </div>
+          <div class="css-right">
+            <button type="button" class="btn btn-success" [routerLink]="['/listadoOutsourcing']">Ver Cotizaciones</button>
+          </div>
+          <div class="css-right">
+            <a class="btn btn-secondary" [routerLink]="['/main']" role="button">RETORNAR</a>
+          </div>
+          <div class="css-right">
+            <button type="button" class="btn btn-success">GRABAR</button>
           </div>
         </div>
-        </div>
       </div>
-        </form>
     </div>
+    </div>
+  </div>
+</div>
