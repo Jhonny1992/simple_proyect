@@ -30,9 +30,8 @@ export class OutsourcingComponent implements OnInit {
 
   precioSubServicioSeleccionado: number = 0;
   numHoras: number = 0;
-  numAnalistas: number = 0;
 
-  SeleccionServicio: number = 0;
+  SeleccionModalidad: number = 0;
 
   totalServicioAndSubservicio: number = 0;
   servicioSeleccionado: number | undefined;
@@ -49,6 +48,15 @@ export class OutsourcingComponent implements OnInit {
   servicioPresionado: boolean = false;
   subServicioPresionado: boolean = false;
   horasIngresadas: boolean = false;
+  OutsourcingCotizacion: any = {
+    nroCotizacion : '',
+    servicio : '',
+    subServicio : '',
+    horas : '',
+    personal : '',
+    tipo : '',
+    costoXServicio : ''
+  }
   constructor(private fb: FormBuilder,
               private outsourcingService: OutsourcingService,
               private helpdeskService: HelpdeskService) {
@@ -87,11 +95,11 @@ export class OutsourcingComponent implements OnInit {
     })
   }
 
-  onRadioChangeModalidad(servicio: TipoServicio): void {
-    if (servicio) {
-      this.SeleccionServicio = 1;
+  onRadioChangeModalidad(modalidad: TipoServicio): void {
+    if (modalidad) {
+      this.SeleccionModalidad = 1;
     }
-    this.servicioSeleccionado = servicio.porcentaje;
+    this.servicioSeleccionado = modalidad.porcentaje;
     console.log('Precio seleccionado:', this.servicioSeleccionado);
   }
 
@@ -153,6 +161,61 @@ export class OutsourcingComponent implements OnInit {
       this.totalServicioAndSubservicio =0;
       this.totalModalidad = 0;
       this.totalPagarServicios =0;
+  }
+
+  validarCamposOutsourcing(): boolean {
+    // Aquí debes incluir la lógica para verificar que todos los campos estén llenos o seleccionados.
+    if (!this.myForm.get('servicio')?.value) {
+      alert('Seleccione un Servicio.');
+      return false;
+    }
+
+    if (!this.myForm.get('subServicio')?.value) {
+      alert('Seleccione un Subservicio.');
+      return false;
+    }
+
+    if (!this.myForm.get('horasServicio')?.value) {
+      alert('Ingrese las horas por Servicio.');
+      return false;
+    }
+
+    if (!this.myForm.get('cantAnalistas')?.value) {
+      alert('Seleccione la cantidad de Analistas.');
+      return false;
+    }
+
+    if (!this.myForm.get('tipoModalidad')?.value) {
+      alert('Seleccione el Tipo de Modalidad.');
+      return false;
+    }
+
+    return true;
+  }
+
+  grabarCotizacionOutsourcing(): void {
+    if (!this.validarCamposOutsourcing()) {
+      return; // Si hay campos vacíos, no continúa
+    }
+    // if(!this.totalPagarServicios){
+    //   this.toastr.warning("Debe generar cotización")
+    //   return
+    // }
+    this.OutsourcingCotizacion ={
+        servicio : this.servicioPresionado,
+        subservicio : this.subServicioPresionado,
+        horas : this.horasServicio,
+        analistas : this.cantAnalistas,
+        modalidad : this.tipoModalidad,
+        costoXSubservicio : this.precioSubServicioSeleccionado
+    }
+
+    // this.outsourcingService.grabarCotizacionOutsourcing(this.OutsourcingCotizacion).subscribe({
+    //   next:(res) => {
+    //     this.toastr.success("Se guardo exitosamente")
+    //     console.log(res);
+    //   }
+    // })
   }
 }
 

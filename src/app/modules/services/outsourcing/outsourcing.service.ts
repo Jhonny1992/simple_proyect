@@ -29,6 +29,12 @@ export class OutsourcingService {
 
   }
 
+  grabarCotizacionOutsourcing(jsonCotizacion: any): Observable<any> {
+    return this.http.post<any>(`${this.url}/outsourcing/grabar`,jsonCotizacion)
+  }
 
+  listarCotizacionOutsourcing(): Observable<any>{
+    return this.http.get<any>(`${this.url}/outsourcing/listar`)
+  }
 
 }

@@ -73,7 +73,7 @@ export class HelpdeskComponent implements OnInit {
   userName: string | null = '';
   nombreAtencion: string = '';
 
-  OutsourcingCotizacion: any = {
+  HelpdeskCotizacion: any = {
     nroCotizacion : '',
     servicio : '',
     subServicio : '',
@@ -156,7 +156,7 @@ export class HelpdeskComponent implements OnInit {
     this.añoSeleccionado = event.target.value;
     if (this.añoSeleccionado == 12) {
       this.verAnio = "1";
-      this.anios = "1 años"
+      this.anios = "1 año"
     } else if (this.añoSeleccionado == 24) {
       this.verAnio = "2"
       this.anios = "2 años"
@@ -428,7 +428,7 @@ export class HelpdeskComponent implements OnInit {
       this.toastr.warning("Debe generar cotización")
       return
     }
-    this.OutsourcingCotizacion ={
+    this.HelpdeskCotizacion ={
         tipoServicio : this.nombreAtencion,
         duracion : this.anios,
         usuarios : this.userName,
@@ -436,7 +436,7 @@ export class HelpdeskComponent implements OnInit {
         costoXAno : this.pagoAnios
     }
 
-    this.helpdeskService.grabarCotizacion(this.OutsourcingCotizacion).subscribe({
+    this.helpdeskService.grabarCotizacion(this.HelpdeskCotizacion).subscribe({
       next:(res) => {
         this.toastr.success("Se guardo exitosamente")
         console.log(res);
