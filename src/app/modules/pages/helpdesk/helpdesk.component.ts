@@ -431,14 +431,14 @@ export class HelpdeskComponent implements OnInit {
     this.HelpdeskCotizacion ={
         tipoServicio : this.nombreAtencion,
         duracion : this.anios,
-        usuarios : this.userName,
+        usuarios : this.numUsuarios,
         modalidad : this.nombreServicio,
         costoXAno : this.pagoAnios
     }
 
     this.helpdeskService.grabarCotizacion(this.HelpdeskCotizacion).subscribe({
       next:(res) => {
-        this.toastr.success("Se guardo exitosamente")
+        this.toastr.success("Se guardó exitosamente")
         console.log(res);
       }
     })
