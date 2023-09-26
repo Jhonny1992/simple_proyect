@@ -7,6 +7,8 @@ import {of, tap, filter, switchMap} from "rxjs";
 import {SubServiceByService} from "../../../model/outsourcing/SubServiceByService";
 import {TipoServicio} from "../../../model/helpdesk/TipoServicio";
 import {HelpdeskService} from "../../services/helpdesk/helpdesk.service";
+import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-outsourcing',
@@ -36,6 +38,8 @@ export class OutsourcingComponent implements OnInit {
   totalServicioAndSubservicio: number = 0;
   servicioSeleccionado: number | undefined;
 
+  nombreservicio: string = '';
+  nombresubservicio: string = '';
   horasServicio: number = 0;
   cantAnalistas: number = 0;
   tipoModalidad: number = 0;
@@ -62,7 +66,9 @@ export class OutsourcingComponent implements OnInit {
   }
   constructor(private fb: FormBuilder,
               private outsourcingService: OutsourcingService,
-              private helpdeskService: HelpdeskService) {
+              private helpdeskService: HelpdeskService,
+              private route: Router,
+              private toastr: ToastrService) {
   }
 
 
@@ -118,6 +124,10 @@ export class OutsourcingComponent implements OnInit {
     this.horasServicio = this.myForm.get('horasServicio')?.value;
     this.cantAnalistas = this.myForm.get('cantAnalistas')?.value;
     this.tipoModalidad = this.myForm.get('tipoModalidad')?.value;
+    console.log("horasServicio: " + this.horasServicio)
+    console.log("horasServicio: " + this.horasServicio)
+    console.log("cantidad analistas: " + this.cantAnalistas)
+    console.log("tipoModalidad: " + this.tipoModalidad)
     if(this.myForm.get('servicio')?.value == '' || this.myForm.get('servicio')?.value == null){
       window.alert('El servicio es requerido.');
     }else if(this.myForm.get('subServicio')?.value == '' || this.myForm.get('subServicio')?.value == null){
@@ -218,12 +228,12 @@ export class OutsourcingComponent implements OnInit {
         costoXSubservicio : this.precioSubServicioSeleccionado
     }
 
-    // this.outsourcingService.grabarCotizacionOutsourcing(this.OutsourcingCotizacion).subscribe({
-    //   next:(res) => {
-    //     this.toastr.success("Se guardo exitosamente")
-    //     console.log(res);
-    //   }
-    // })
+    this.outsourcingService.grabarCotizacionOutsourcing(this.OutsourcingCotizacion).subscribe({
+      next:(res) => {
+        this.toastr.success("Se guardo exitosamente")
+        console.log(res);
+      }
+    })
   }
 }
 

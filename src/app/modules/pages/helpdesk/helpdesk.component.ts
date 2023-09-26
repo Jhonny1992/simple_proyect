@@ -438,7 +438,7 @@ export class HelpdeskComponent implements OnInit {
 
     this.helpdeskService.grabarCotizacion(this.HelpdeskCotizacion).subscribe({
       next:(res) => {
-        this.toastr.success("Se guardo exitosamente")
+        this.toastr.success("Se guardó exitosamente")
         console.log(res);
       }
     })
