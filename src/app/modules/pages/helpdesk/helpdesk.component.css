@@ -11,7 +11,7 @@
 
 .css-grid-table-header,
 .css-grid-table-body {
-    grid-template-columns: 170px 130px 90px;
+    grid-template-columns: 280px 120px 120px;
     width: 100%;
     line-height: 20px; 
 }
@@ -51,4 +51,7 @@
 
 .form-check-label{
     font-size: 14px;
+}
+.css-vertcenter {
+    vertical-align: middle;
 }

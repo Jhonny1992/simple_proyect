@@ -12,10 +12,6 @@ import {Dias} from "../../../model/helpdesk/Dias";
 })
 export class HelpdeskService {
 
-
-  private url2 = 'assets/json/helpdesk/tipo-atencion.json'
-
-
   private url: string = `${environment.HOST}`
 
   constructor(private http: HttpClient) {
