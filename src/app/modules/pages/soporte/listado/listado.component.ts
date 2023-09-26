@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SoporteService} from "../../../services/soporte/soporte.service";
+import {CotizacionSoporte} from "../../../../model/soporte/CotizacionSoporte";
 
 @Component({
   selector: 'app-listadoSoporte',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class listadoSoporteComponent implements OnInit {
 
-  constructor() { }
+  constructor(private soporteService: SoporteService) { }
+
+  listCotizacionSoporte: CotizacionSoporte[]=[]
 
   ngOnInit(): void {
+    this.listarCotizacionSoporte();
   }
 
+  listarCotizacionSoporte(): void {
+    this.soporteService.listarCotizacionSoporte().subscribe({
+      next:(res) =>{
+        this.listCotizacionSoporte = res;
+      }
+    })
+  }
 }

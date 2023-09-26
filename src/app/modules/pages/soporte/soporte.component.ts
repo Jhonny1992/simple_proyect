@@ -7,6 +7,8 @@ import {Actividades} from "../../../model/soporte/Actividades";
 import {TipoEquipos} from "../../../model/soporte/TipoEquipos";
 import {TipoAtencion} from "../../../model/helpdesk/TipoAtencion";
 import {Requerimientos} from "../../../model/helpdesk/Requerimientos";
+import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-soporte',
@@ -41,9 +43,21 @@ export class SoporteComponent implements OnInit {
   selectedEquipos: number = 0;
   selectedHorario: number = 0;
 
+  tipoSoporte:string = ''
+  horarioSoporte:string = ''
+  SoporteCotizacion: any = {
+    nroCotizacionSoporte : '',
+    servicio : '',
+    subServicio : '',
+    horas : '',
+    personal : '',
+    tipo : '',
+    costoXServicio : ''
+  }
 
-
-  constructor(private soporteService: SoporteService) {
+  constructor(private soporteService: SoporteService,
+    private route: Router,
+    private toastr: ToastrService) {
     this.listTipoServicio();
     this.listHoraAtencion();
     this.listActividades();
@@ -100,7 +114,9 @@ export class SoporteComponent implements OnInit {
 
   onRadioChangeTipServicio(servicio: Servicio): void {
     this.tipServicioSeleccionado = servicio.precio;
-    console.log('Precio seleccionado:', this.tipServicioSeleccionado);
+    this.tipoSoporte = servicio.descripcion;
+    console.log('tipoSoporte:', this.tipoSoporte);
+    console.log('costo servicio:', this.tipServicioSeleccionado);
   }
 
   onRadioChangeHorarioAtencion(horario: HorarioAtencion): void {
@@ -108,7 +124,8 @@ export class SoporteComponent implements OnInit {
       this.selectedHorario = 1;
     }
     this.horarioAtencionSeleccionado = horario.porcentaje;
-    console.log('Precio seleccionado horario:', this.horarioAtencionSeleccionado);
+    this.horarioSoporte = horario.descripcion;
+    console.log('horarioSoporte:', this.horarioSoporte);
   }
 
   onCheckboxActividades(actividades: Actividades): void {
@@ -135,7 +152,7 @@ export class SoporteComponent implements OnInit {
     const auxPrecioTotalActividades = this.actividades.filter(req => req.selected)
       .reduce((total, req) => total + req.precio, 0);
     this.precioTotalActividades = auxPrecioTotalActividades;
-    console.log(this.precioTotalActividades);
+    // console.log(this.precioTotalActividades);
 
   }
 
@@ -146,7 +163,7 @@ export class SoporteComponent implements OnInit {
     const auxprecioTotalEquipos = this.tipoEquipos.filter(req => req.selected)
       .reduce((total, req) => total + req.precio, 0);
     this.precioTotalEquipos = auxprecioTotalEquipos;
-    console.log(this.precioTotalEquipos);
+    // console.log(this.precioTotalEquipos);
   }
 
   porcentajeHorario(): void {
@@ -158,7 +175,7 @@ export class SoporteComponent implements OnInit {
       sumaTotal = this.precioTotalActividades + this.precioTotalEquipos
     }
     this.sumaActivEquip = sumaTotal
-    console.log(this.sumaActivEquip)
+    // console.log(this.sumaActivEquip)
   }
 
   porcentajePorHorario(){
@@ -167,7 +184,7 @@ export class SoporteComponent implements OnInit {
 
   cantEquipoPorSumaActEquip(): void {
    this.neto =  this.sumaActivEquip * this.numEquipos;
-   console.log(this.neto)
+  //  console.log(this.neto)
   }
 
 
@@ -176,6 +193,7 @@ export class SoporteComponent implements OnInit {
     if (!this.validarCampos()) {
       return;
     }
+    console.log('numEquipos:', this.numEquipos);
       await this.actividadesTotal();
       await this.equiposTotal();
       await this.porcentajeHorario();
@@ -214,5 +232,31 @@ export class SoporteComponent implements OnInit {
     return true;
   }
 
+  grabarCotizacionSoporte(): void {
+    if (!this.validarCampos()) {
+      return; // Si hay campos vacíos, no continúa
+    }
+    // if(!this.pagoAnios){
+    //   this.toastr.warning("Debe generar cotización")
+    //   return
+    // }
+    this.SoporteCotizacion ={
+        tipoSoporte: this.tipoSoporte,
+        horarioSoporte: this.horarioSoporte,
+        canEquiposSoporte: this.numEquipos,
+        costoServicioSoporte: this.tipServicioSeleccionado
+    }
+
+    this.soporteService.grabarCotizacionSoporte(this.SoporteCotizacion).subscribe({
+      next:(res) => {
+        this.toastr.success("Se guardó exitosamente")
+        console.log(res);
+      }
+    })
+}
+verCotizacionSoporte(): void {
+  this.route.navigate(['/listar-soporte'])
+
+}
 
 }
