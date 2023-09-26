@@ -15,6 +15,13 @@
               </tr>
             </thead>
             <tbody>
+              <tr *ngFor="let cotizacionsoporte of listCotizacionSoporte">
+                <th scope="row">{{cotizacionsoporte.nroCotizacionSoporte}}</th>
+                <td>{{cotizacionsoporte.tipoSoporte}}</td>
+                <td>{{cotizacionsoporte.horarioSoporte}}</td>
+                <td class="css-center">{{cotizacionsoporte.canEquiposSoporte}}</td>
+                <td class="css-center">{{cotizacionsoporte.costoServicioSoporte}}</td>
+              </tr>
               <tr>
                 <th scope="row">C000005</th>
                 <td>Soporte Tecnico Estandar</td>

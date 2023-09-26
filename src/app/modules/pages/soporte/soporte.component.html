@@ -90,13 +90,13 @@
           <div class="css-right css-total">{{neto}}</div>
 
           <div class="css-right">
-            <button type="button" class="btn btn-success" [routerLink]="['/listadoSoporte']">Ver Cotizaciones</button>
+            <button type="button" class="btn btn-success" [routerLink]="['/listadoSoporte']" (click)="verCotizacionSoporte()">Ver Cotizaciones</button>
           </div>
           <div class="css-right">
             <a class="btn btn-secondary" [routerLink]="['/main']" role="button">RETORNAR</a>
           </div>
           <div class="css-right">
-            <button type="button" class="btn btn-success">GRABAR</button>
+            <button type="button" class="btn btn-success" (click)="grabarCotizacionSoporte()">GRABAR</button>
           </div>
         </div>
       </div>

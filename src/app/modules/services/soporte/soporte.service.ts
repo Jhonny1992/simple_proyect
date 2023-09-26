@@ -34,4 +34,12 @@ export class SoporteService {
     return this.http.get<TipoEquipos[]>(`${this.url}/hardware`);
   }
 
+  grabarCotizacionSoporte(jsonCotizacion: any): Observable<any> {
+    return this.http.post<any>(`${this.url}/soporte/grabar`,jsonCotizacion)
+  }
+
+  listarCotizacionSoporte(): Observable<any>{
+    return this.http.get<any>(`${this.url}/soporte/listar`)
+  }
+
 }
