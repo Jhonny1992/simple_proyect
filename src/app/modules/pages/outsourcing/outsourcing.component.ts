@@ -48,7 +48,7 @@ export class OutsourcingComponent implements OnInit {
   totalXHoras: number = 0;
 
   numUsuarios: number = 0;
-
+  nombreModal: string = ''
 
 
 
@@ -108,6 +108,7 @@ export class OutsourcingComponent implements OnInit {
     if (modalidad) {
       this.SeleccionModalidad = 1;
     }
+    this.nombreModal = modalidad.descripcion
     this.servicioSeleccionado = modalidad.porcentaje;
     console.log('Precio seleccionado:', this.servicioSeleccionado);
   }
@@ -117,13 +118,24 @@ export class OutsourcingComponent implements OnInit {
     this.servicioPresionado = true;
     this.subServicioPresionado = true;
     this.horasIngresadas = true;
-
-    const selectedSubServicio = this.myForm.get('subServicio')?.value;
+    console.log(this.subServicios)
+    let formularo = this.myForm.value
+    let codSubServicio = formularo.subServicio;
+    let nombreSubServ = this.subServicios.find(subServicio => subServicio.subCodigo.toString() === codSubServicio);
+    // @ts-ignore
+    const selectedSubServicio = parseInt(nombreSubServ?.precio)
+    //const selectedSubServicio = this.myForm.get('subServicio')?.value;
     this.precioSubServicioSeleccionado = selectedSubServicio;
     console.log("precio subservicio: " + this.precioSubServicioSeleccionado)
     this.horasServicio = this.myForm.get('horasServicio')?.value;
     this.cantAnalistas = this.myForm.get('cantAnalistas')?.value;
-    this.tipoModalidad = this.myForm.get('tipoModalidad')?.value;
+
+    let codModal = formularo.tipoModalidad;
+    let nombreModal = this.modalidades.find(modal => modal.codigo.toString() === codModal);
+    // @ts-ignore
+    const nombreModales = parseFloat(nombreModal?.porcentaje)
+    this.tipoModalidad = nombreModales
+    //this.tipoModalidad = this.myForm.get('tipoModalidad')?.value;
     console.log("horasServicio: " + this.horasServicio)
     console.log("horasServicio: " + this.horasServicio)
     console.log("cantidad analistas: " + this.cantAnalistas)
@@ -219,13 +231,26 @@ export class OutsourcingComponent implements OnInit {
     //   this.toastr.warning("Debe generar cotización")
     //   return
     // }
+
+    let formularo = this.myForm.value
+    let codServicio = formularo.servicio;
+    let nombreServ = this.servicios.find(servicio => servicio.codigo.toString() === codServicio);
+    let nombreServicio = nombreServ?.descripcion
+
+    let codSubServicio = formularo.subServicio;
+    let nombreSubServ = this.subServicios.find(subServicio => subServicio.subCodigo.toString() === codSubServicio);
+    let nombreSubServicio = nombreSubServ?.descripcion
+
+    let codModal = formularo.tipoModalidad;
+    let nombreModal = this.modalidades.find(subServicio => subServicio.codigo.toString() === codModal);
+    let nombreModals = nombreModal?.descripcion
     this.OutsourcingCotizacion ={
-        servicio : this.servicioPresionado,
-        subservicio : this.subServicioPresionado,
+        servicio : nombreServicio,
+        subServicio : nombreSubServicio,
         horas : this.horasServicio,
-        analistas : this.cantAnalistas,
-        modalidad : this.tipoModalidad,
-        costoXSubservicio : this.precioSubServicioSeleccionado
+        personal : this.cantAnalistas,
+        tipo : nombreModals,
+        costoXServicio : this.totalXHoras
     }
 
     this.outsourcingService.grabarCotizacionOutsourcing(this.OutsourcingCotizacion).subscribe({
